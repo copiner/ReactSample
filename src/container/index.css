@@ -1,0 +1,14 @@
+.logo{
+   width: 120px;
+   height: 31px;
+   margin: 0 28px 16px 0;
+   color:#fff;
+   font-size: 20px;
+   float: left;
+}
+.form-criteria{
+  margin-bottom: 16px;
+}
+.form-criteria span{
+  padding: 0 6px;
+}
