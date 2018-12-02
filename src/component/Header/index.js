@@ -19,7 +19,7 @@ class AppHeader extends Component {
         return (
             <div className="header-menu">
               <Header className="header">
-                <div className="logo" >惠民汇付</div>
+                <div className="logo" >互联网支付</div>
                   <Menu
                     theme="dark"
                     mode="horizontal"

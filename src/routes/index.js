@@ -5,6 +5,7 @@ import PostList from '../container/PostList';
 import Hoc from '../component/Hoc';
 import Acc from '../component/Account';
 import AppForm from '../component/Form';
+import HForm from '../component/Account/form';
 
 const Home = () =>{
     return  (
@@ -34,30 +35,19 @@ const route = [{
 },{
   path: '/hoc',
   exact: true,
-  //container/index.js
-  // component={(props) => {
-  //   let obj = Object.assign({}, {fetchParams}, props)
-  //   return <route.render {...obj}/>
-  // }}
   render: Hoc
 },{
   path: '/acc',
   exact: true,
-  //container/index.js
-  // component={(props) => {
-  //   let obj = Object.assign({}, {fetchParams}, props)
-  //   return <route.render {...obj}/>
-  // }}
   render: Acc
 },{
   path: '/login',
   exact: true,
-  //container/index.js
-  // component={(props) => {
-  //   let obj = Object.assign({}, {fetchParams}, props)
-  //   return <route.render {...obj}/>
-  // }}
   render: props => < AppForm {...props} />
+},{
+  path: '/hform',
+  exact: true,
+  render: props => < HForm {...props} />
 }];
 
 export default route;

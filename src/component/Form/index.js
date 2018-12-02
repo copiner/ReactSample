@@ -10,6 +10,7 @@ import {
 
 const FormItem = Form.Item;
 
+//ant desigin form
 class AppForm extends Component {
     constructor(props) {
         super(props);

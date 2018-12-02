@@ -30,9 +30,10 @@ class AppSider extends Component {
                     </SubMenu>
                     <SubMenu key="sub2" title={<span><Icon type="appstore" /><span>对账管理</span></span>}>
                         <Menu.Item key="5"><Link to="/acc">交易对账</Link></Menu.Item>
+                        <Menu.Item key="6"><Link to="/login">交易明细</Link></Menu.Item>
                     </SubMenu>
                     <SubMenu key="sub3" title={<span><Icon type="appstore" /><span>凭证管理</span></span>}>
-                        <Menu.Item key="6"><Link to="/login">电子凭证</Link></Menu.Item>
+                        <Menu.Item key="7"><Link to="/hform">电子凭证</Link></Menu.Item>
                     </SubMenu>
                 </Menu>
             </Sider>
