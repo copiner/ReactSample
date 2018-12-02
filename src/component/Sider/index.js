@@ -23,16 +23,16 @@ class AppSider extends Component {
                       defaultOpenKeys={['sub1','sub2','sub3']}
                       defaultSelectedKeys={[this.state.current]} >
                     <SubMenu key="sub1" title={<span><Icon type="appstore" /><span>交易管理</span></span>}>
-                        <Menu.Item key="1"><Link to="/users">交易查询</Link></Menu.Item>
+                        <Menu.Item key="1"><Link to="/">交易查询</Link></Menu.Item>
                         <Menu.Item key="2"><Link to="/posts">交易退款</Link></Menu.Item>
-                        <Menu.Item key="3"><Link to="/about">退款查询</Link></Menu.Item>
-                        <Menu.Item key="4"><Link to="/test" >交易统计</Link></Menu.Item>
+                        <Menu.Item key="3"><Link to="/users">退款查询</Link></Menu.Item>
+                        <Menu.Item key="4"><Link to="/hoc" >交易统计</Link></Menu.Item>
                     </SubMenu>
                     <SubMenu key="sub2" title={<span><Icon type="appstore" /><span>对账管理</span></span>}>
-                        <Menu.Item key="5"><Link to="/users">交易对账</Link></Menu.Item>
+                        <Menu.Item key="5"><Link to="/acc">交易对账</Link></Menu.Item>
                     </SubMenu>
                     <SubMenu key="sub3" title={<span><Icon type="appstore" /><span>凭证管理</span></span>}>
-                        <Menu.Item key="6"><Link to="/users">电子凭证</Link></Menu.Item>
+                        <Menu.Item key="6"><Link to="/login">电子凭证</Link></Menu.Item>
                     </SubMenu>
                 </Menu>
             </Sider>

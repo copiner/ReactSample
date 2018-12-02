@@ -18,7 +18,7 @@ class AppForm extends Component {
             <div className="form-menu">
               <div className="form-criteria">
                  <span><RangePicker /></span>
-                 <span><Input style={{ width: 160 }} placeholder="Basic usage" /></span>
+                 <span><Input style={{ width: 160 }} placeholder="name usage" /></span>
                  <span><Select
                  defaultValue="lucy"
                  style={{ width: 160 }}

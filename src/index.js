@@ -4,6 +4,7 @@ import '../public/index.css';
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import configureStore from './store';
 import App from './container';
@@ -16,7 +17,9 @@ const store = configureStore();
 render(
     <LocaleProvider locale={zh_CN}>
       <Provider store={store}>
-        <App />
+        <Router>
+         <Route path="/" component={App} />
+        </Router>
       </Provider>
     </LocaleProvider>,
     document.getElementById('app')
