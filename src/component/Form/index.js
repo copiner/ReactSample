@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
 
-import { DatePicker, Select } from 'antd';
-const { RangePicker } = DatePicker;
-const { Option } = Select;
-
 import {
-  Form, Icon, Input, Button,
+  Form, Icon, Input, Button,DatePicker
 } from 'antd';
 
 const FormItem = Form.Item;
-
-//ant desigin form
+const { RangePicker } = DatePicker;
+//ant desigin form ...
 class AppForm extends Component {
     constructor(props) {
         super(props);
@@ -20,10 +16,18 @@ class AppForm extends Component {
         };
         this.handleSubmit = (e) => {
            e.preventDefault();
-           this.props.form.validateFields((err, values) => {
-             if (!err) {
-               console.log('Received values of form: ', values);
+           this.props.form.validateFields((err, fieldsValue) => {
+
+             if (err) {
+               return
              }
+             // Should format date value before submit.
+            const values = {
+              ...fieldsValue,
+              'date-picker': fieldsValue['date-picker'].format('YYYY-MM-DD')
+            };
+            console.log('Received values of form: ', values);
+
            });
          };
        this.hasErrors = (fieldsError) =>  {
@@ -43,12 +47,35 @@ class AppForm extends Component {
           getFieldDecorator, getFieldsError, getFieldError, isFieldTouched,
         } = this.props.form;
 
+        const formItemLayout = {
+          labelCol: {
+            xs: { span: 24 },
+            sm: { span: 8 },
+          },
+          wrapperCol: {
+            xs: { span: 24 },
+            sm: { span: 16 },
+          },
+        };
+
+        const config = {
+          rules: [{ type: 'object', required: true, message: 'Please select time!' }],
+        };
+
         // Only show error after a field is touched.
         const userNameError = isFieldTouched('userName') && getFieldError('userName');
         const passwordError = isFieldTouched('password') && getFieldError('password');
 
         return (
           <Form layout="inline" onSubmit={this.handleSubmit}>
+            <FormItem
+              {...formItemLayout}
+              label="DatePicker"
+            >
+              {getFieldDecorator('date-picker', config)(
+                <DatePicker />
+              )}
+            </FormItem>
             <FormItem
               validateStatus={userNameError ? 'error' : ''}
               help={userNameError || ''}
