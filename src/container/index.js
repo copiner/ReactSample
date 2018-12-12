@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect,Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import routes from '../routes'
+import { comRoutes, busRoutes } from '../routes'
 import PrivateRoute from '../routes/PrivateRoute';
 
 import './index.css';
@@ -42,7 +42,7 @@ class App extends Component {
                         <Content style={{ background: '#fff', padding: 16, margin: 0, minHeight: 280 }}>
                           <Switch>
                             {
-                              routes.map((route, index) => (
+                              comRoutes.map((route, index) => (
                                 <Route
                                   fetchParams={ fetchParams }
                                   key={index}
@@ -55,19 +55,21 @@ class App extends Component {
                                   }}
                                 />
                               ))
-                              // routes.map((route, index) => (
-                              //   <PrivateRoute
-                              //     fetchParams={ fetchParams }
-                              //     key={index}
-                              //     path={route.path}
-                              //     exact={route.exact}
-                              //     // component={route.render}
-                              //     component={(props) => {
-                              //       let obj = Object.assign({}, {fetchParams}, props)
-                              //       return <route.render {...obj}/>
-                              //     }}
-                              //   />
-                              // ))
+                            }
+                            {
+                              busRoutes.map((route, index) => (
+                                <PrivateRoute
+                                  fetchParams={ fetchParams }
+                                  key={index}
+                                  path={route.path}
+                                  exact={route.exact}
+                                  // component={route.render}
+                                  component={(props) => {
+                                    let obj = Object.assign({}, {fetchParams}, props)
+                                    return <route.render {...obj}/>
+                                  }}
+                                />
+                              ))
                             }
                           </Switch>
                         </Content>

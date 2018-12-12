@@ -20,6 +20,7 @@ class UserList extends Component {
 
     render() {
         const { users } = this.props;
+        console.log(users)
 
         const columns = [{
             title: '姓名',
@@ -72,7 +73,7 @@ class UserList extends Component {
     }
 
     componentDidUpdate(){
-      
+
     }
 
 }

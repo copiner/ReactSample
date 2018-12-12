@@ -13,11 +13,11 @@ const Home = () =>{
       );
 };
 
-const route = [{
+export const comRoutes = [{
   path: '/',
   exact: true,
   render: Home
-}, {
+},{
   path: '/users',
   exact: true,
   //container/index.js
@@ -32,7 +32,9 @@ const route = [{
   //   return <route.render {...obj}/>
   // }}
   render: props => < PostList {...props} />
-},{
+}];
+
+export const busRoutes = [{
   path: '/hoc',
   exact: true,
   render: Hoc
@@ -49,5 +51,3 @@ const route = [{
   exact: true,
   render: props => < HForm {...props} />
 }];
-
-export default route;
