@@ -40,3 +40,26 @@ const mapDispatchToProps = (dispatch) => ({
 // });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserList);
+
+
+//bindActionCreators(actionCreators, dispatch)
+/*
+function bindActionCreator(actionCreator, dispatch) {
+  return (...args) => dispatch(actionCreator(...args))
+}
+
+export default function bindActionCreators(actionCreators, dispatch) {
+  // 省去一些类型判断
+  var keys = Object.keys(actionCreators)
+  var boundActionCreators = {}
+  for (var i = 0; i < keys.length; i++) {
+    var key = keys[i]
+    var actionCreator = actionCreators[key]
+    if (typeof actionCreator === 'function') {
+      // 逐个装上自动 dispatch 技能
+      boundActionCreators[key] = bindActionCreator(actionCreator, dispatch)
+    }
+  }
+  return boundActionCreators
+}
+*/
