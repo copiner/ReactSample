@@ -19,6 +19,7 @@ const formHoc = WrappedComponent => class extends Component {
     this.handleSubmit = () => {
       console.log(this.state.fields);
     }
+
     this.getField = fieldName => {
       return {
         onChange: this.onChange(fieldName),

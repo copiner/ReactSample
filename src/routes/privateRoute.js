@@ -4,7 +4,7 @@ import { Route,Redirect } from 'react-router-dom';
 
 //登陆或者权限校验控制实现方法...
 const fakeAuth = {
-  isAuthenticated: false
+  isAuthenticated: true
 };
 
 const PrivateRoute = ({ component: Component, ...rest }) => (

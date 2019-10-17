@@ -29,7 +29,7 @@ class AppForm extends Component {
             console.log('Received values of form: ', values);
 
            });
-         };
+       };
        this.hasErrors = (fieldsError) =>  {
          Object.keys(fieldsError).some(field => fieldsError[field]);
        }
@@ -39,8 +39,6 @@ class AppForm extends Component {
       // To disabled submit button at the beginning.
       this.props.form.validateFields();
     }
-
-
 
     render() {
         const {
@@ -106,6 +104,7 @@ class AppForm extends Component {
               </Button>
             </FormItem>
           </Form>
+
         );
     }
 }

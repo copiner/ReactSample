@@ -26,6 +26,7 @@ class App extends Component {
 
     render() {
         const { fetchParams } = this.props;
+        console.log(fetchParams);
 
         return (
               <div>

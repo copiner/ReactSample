@@ -34,6 +34,7 @@ class AppSider extends Component {
                     </SubMenu>
                     <SubMenu key="sub3" title={<span><Icon type="appstore" /><span>凭证管理</span></span>}>
                         <Menu.Item key="7"><Link to="/hform">电子凭证</Link></Menu.Item>
+                        <Menu.Item key="8"><Link to="/alert">凭证查看</Link></Menu.Item>
                     </SubMenu>
                 </Menu>
             </Sider>
