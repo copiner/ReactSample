@@ -1,6 +1,13 @@
 
-{
-  "presets": ["env","react"],
+module.exports = {
+  presets: [
+    ["@babel/env",{
+      targets: {
+          esmodules: true
+      }
+    ],
+    "@babel/preset-react"
+  ],
   "plugins": [
     "transform-runtime",
     "transform-object-rest-spread",

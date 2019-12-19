@@ -6,7 +6,7 @@ import Hoc from '../component/Hoc';
 import Acc from '../component/Account';
 import AppForm from '../component/Form';
 import HForm from '../component/Account/form';
-import Alert from '../component/Alert';
+// import Alert from '../component/Alert';
 
 const Home = () =>{
     return  (

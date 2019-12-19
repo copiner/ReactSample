@@ -5,8 +5,6 @@ import { connect } from 'react-redux';
 import { comRoutes, busRoutes } from '../routes'
 import PrivateRoute from '../routes/PrivateRoute';
 
-import './index.css';
-
 import AppSider from '../component/Sider';
 import AppHeader from '../component/Header';
 

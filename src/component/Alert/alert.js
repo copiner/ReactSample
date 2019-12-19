@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { is, fromJS } from 'immutable';
 import ReactDOM from 'react-dom';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import './alert.css';
 
 
@@ -84,7 +84,7 @@ class Alert extends Component{
 
   render(){
     return (
-      <ReactCSSTransitionGroup
+      <CSSTransitionGroup
         component={this.firstChild}
         transitionName='transitionWrapper'
         transitionEnterTimeout={300}
@@ -94,7 +94,7 @@ class Alert extends Component{
           {this.state.childs}
           </div>
         </div>
-      </ReactCSSTransitionGroup>
+      </CSSTransitionGroup>
     );
   }
 }

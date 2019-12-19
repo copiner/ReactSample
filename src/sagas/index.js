@@ -15,7 +15,8 @@ function* showPostsAsync() {
     try {
         //const posts = yield select(getPosts);
         //console.log(posts);
-        const res = yield call(get, GET_POSTS_URL);
+        let user = {userId:2, name:"wrq"};
+        const res = yield call(post, GET_POSTS_URL, user);
         yield put({ type: GET_POSTS_SUCCESS, posts: res.data });
         // const state = yield select();
         // console.log(state);
