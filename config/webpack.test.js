@@ -16,8 +16,8 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, '../build'),
-    filename: '[name].bundle.js',
-    chunkFilename: '[name].bundle.js',
+    filename: 'bundle-[hash].js',
+    chunkFilename: '[name]-[hash].js',
     publicPath:'/'
   },
   module: {
@@ -86,7 +86,42 @@ module.exports = {
 
             ignoreOrder: false, // Enable to remove warnings about conflicting order
           })
-     ]
+     ],
+     optimization: {
+       splitChunks: {
+         chunks: 'all',
+         minSize: 30000,
+         maxSize: 0,
+         minChunks: 1,
+         maxAsyncRequests: 6,
+         maxInitialRequests: 6,
+         automaticNameDelimiter: '~',
+         automaticNameMaxLength: 30,
+         cacheGroups: {
+           vendors: {
+             //test: /[\\/]node_modules[\\/]/,
+             test: /[\\/]node_modules[\\/](react|react-dom|react-redux|redux|react-router|react-router-dom)[\\/]/,
+             priority: -10,
+             name:'vendors'
+           },
+           middles : {
+             test: /[\\/]node_modules[\\/](redux-saga|redux-thunk|axios)[\\/]/,
+             priority: -15,
+             name:'middles'
+           },
+           commons : {
+             test: /[\\/]node_modules[\\/](immutable|moment)[\\/]/,
+             priority: -15,
+             name:'commons'
+           },
+           default: {
+             minChunks: 2,
+             priority: -20,
+             reuseExistingChunk: true
+           }
+         }
+       }
+    }
 }
 //
 // if (!isProd) {

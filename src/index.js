@@ -28,3 +28,23 @@ render(
     </ConfigProvider>,
     document.getElementById('root')
 );
+
+// async function getLodash() {
+//   const element = document.createElement('div');
+//   const moment = await import(/* webpackChunkName: "lodash" */ 'moment');
+//   //element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+//
+//   return element;
+// }
+
+async function getLodash() {
+  const element = document.createElement('div');
+  const { default: _ } = await import(/* webpackChunkName: "lodash" */ 'lodash');
+  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+
+  return element;
+}
+
+getLodash().then(component => {
+   document.body.appendChild(component);
+})

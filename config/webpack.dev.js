@@ -16,8 +16,8 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, '../build'),
-    filename: 'bundle.js',
-    chunkFilename: 'vendor.js',
+    filename: 'bundle-[hash].js',
+    chunkFilename: '[name]-[hash].js',
     publicPath:'/'
   },
   module: {
@@ -87,24 +87,36 @@ module.exports = {
      ],
      optimization: {
         splitChunks: {
-          chunks: "all",// all async initial
+          chunks: 'all',
           minSize: 30000,
           maxSize: 0,
           minChunks: 1,
-          maxAsyncRequests: 5,
-          maxInitialRequests: 3,
-          automaticNameDelimiter: "~",
-          name: true,
+          maxAsyncRequests: 6,
+          maxInitialRequests: 6,
+          automaticNameDelimiter: '~',
+          automaticNameMaxLength: 30,
           cacheGroups: {
-              vendors: {
-                  test: /[\\/]node_modules[\\/]/,
-                  priority: -10
-              },
-              default: {
-                  minChunks: 2,
-                  priority: -20,
-                  reuseExistingChunk: true
-              }
+            vendors: {
+              //test: /[\\/]node_modules[\\/]/,
+              test: /[\\/]node_modules[\\/](react|react-dom|react-redux|redux|react-router|react-router-dom)[\\/]/,
+              priority: -10,
+              name:'vendors'
+            },
+            middles : {
+              test: /[\\/]node_modules[\\/](redux-saga|redux-thunk|axios)[\\/]/,
+              priority: -15,
+              name:'middles'
+            },
+            commons : {
+              test: /[\\/]node_modules[\\/](immutable|moment)[\\/]/,
+              priority: -15,
+              name:'commons'
+            },
+            default: {
+              minChunks: 2,
+              priority: -20,
+              reuseExistingChunk: true
+            }
           }
        }
     },
