@@ -1,4 +1,12 @@
 import React from 'react';
+
+
+//异步加载组件
+import AsyncComponent from '../component/async';
+
+const Counter = AsyncComponent(() => import('../component/async/counter'));
+
+//同步加载
 import UserList from '../container/UserList';
 import PostList from '../container/PostList';
 
@@ -55,4 +63,9 @@ export const busRoutes = [{
   path: '/alert',
   exact: true,
   render: props => < Alert {...props} />
+},{
+  title: 'async',
+  path: '/counter',
+  exact: true,
+  render: props => < Counter {...props} />
 }];

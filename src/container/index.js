@@ -24,14 +24,13 @@ class App extends Component {
 
     render() {
         const { fetchParams } = this.props;
-        console.log(fetchParams);
-
+        let sider = Object.assign(comRoutes, busRoutes);
         return (
               <div>
                   <Layout>
                     <AppHeader />
                     <Layout>
-                      <AppSider />
+                      <AppSider sider = { sider } />
                       <Layout style={{ padding: '0 24px 24px' }}>
                         <Breadcrumb style={{ margin: '16px 0' }}>
                           <Breadcrumb.Item>Home</Breadcrumb.Item>

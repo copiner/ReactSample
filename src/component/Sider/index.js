@@ -15,6 +15,8 @@ class AppSider extends Component {
     }
 
     render() {
+        let sider = this.props.sider;
+        console.log(sider);
         return (
             <Sider width={200} style={{ background: '#fff' }}>
                 <Menu theme="light"
@@ -22,6 +24,11 @@ class AppSider extends Component {
                       style={{ height: '100%', borderRight: 0 }}
                       defaultOpenKeys={['sub1','sub2','sub3']}
                       defaultSelectedKeys={[this.state.current]} >
+                    {
+                      sider.map((link, index) => (
+                        console.log(link);
+                      ))
+                    }
                     <SubMenu key="sub1" title={<span><Icon type="appstore" /><span>交易管理</span></span>}>
                         <Menu.Item key="1"><Link to="/">交易查询</Link></Menu.Item>
                         <Menu.Item key="2"><Link to="/posts">交易退款</Link></Menu.Item>
@@ -35,6 +42,7 @@ class AppSider extends Component {
                     <SubMenu key="sub3" title={<span><Icon type="appstore" /><span>凭证管理</span></span>}>
                         <Menu.Item key="7"><Link to="/hform">电子凭证</Link></Menu.Item>
                         <Menu.Item key="8"><Link to="/alert">凭证查看</Link></Menu.Item>
+                        <Menu.Item key="9"><Link to="/counter">统计查看</Link></Menu.Item>
                     </SubMenu>
                 </Menu>
             </Sider>
