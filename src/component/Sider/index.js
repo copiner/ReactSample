@@ -26,7 +26,7 @@ class AppSider extends Component {
                       defaultSelectedKeys={[this.state.current]} >
                     {
                       sider.map((link, index) => (
-                        console.log(link);
+                        
                       ))
                     }
                     <SubMenu key="sub1" title={<span><Icon type="appstore" /><span>交易管理</span></span>}>
