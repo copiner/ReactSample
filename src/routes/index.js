@@ -23,16 +23,19 @@ const Home = () =>{
 };
 
 export const comRoutes = [{
+  title:"交易查询",
   path: '/',
   exact: true,
   render: Home
 },{
+  title:"退款查询",
   path: '/users',
   exact: true,
   //container/index.js
   //component={route.render}
   render: props => < UserList {...props} />
 },{
+  title:"交易退款",
   path: '/posts',
   exact: true,
   //container/index.js
@@ -44,27 +47,32 @@ export const comRoutes = [{
 }];
 
 export const busRoutes = [{
+  title:"交易统计",
   path: '/hoc',
   exact: true,
   render: Hoc
 },{
+  title:"交易对账",
   path: '/acc',
   exact: true,
   render: Acc
 },{
+  title:"交易明细",
   path: '/login',
   exact: true,
   render: props => < AppForm {...props} />
 },{
+  title:"电子凭证",
   path: '/hform',
   exact: true,
   render: props => < HForm {...props} />
 },{
+  title:"凭证查看",
   path: '/alert',
   exact: true,
   render: props => < Alert {...props} />
 },{
-  title: 'async',
+  title:"统计报表",
   path: '/counter',
   exact: true,
   render: props => < Counter {...props} />
