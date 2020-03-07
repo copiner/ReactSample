@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, withRouter } from 'react-router-dom';
 
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 
@@ -9,6 +9,7 @@ const { Header, Content, Sider } = Layout;
 class AppSider extends Component {
     constructor(props) {
         super(props);
+	console.log(props);
         this.state = {
           current: '1'
         };
@@ -42,4 +43,4 @@ class AppSider extends Component {
     }
 }
 
-export default AppSider
+export default withRouter(AppSider);

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route, Redirect,Link} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect,Link, withRouter} from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { comRoutes, busRoutes } from '../routes'
@@ -20,11 +20,12 @@ const { Header, Content, Sider, Footer } = Layout;
 class App extends Component {
     constructor(props) {
         super(props);
+	console.log(props);
     }
 
     render() {
         const { fetchParams } = this.props;
-        console.log(fetchParams);
+//        console.log(fetchParams);
 
         return (
               <div>
@@ -90,6 +91,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
+//export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
 
 
 
