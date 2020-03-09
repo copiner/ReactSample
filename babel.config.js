@@ -18,6 +18,7 @@ module.exports = {
      ["@babel/plugin-transform-react-jsx", {
        useBuiltIns:true
      }],
+     "@babel/plugin-syntax-dynamic-import",
      '@babel/plugin-proposal-class-properties',
      ["import", { "libraryName": "antd", "style": "css" }]
   ]

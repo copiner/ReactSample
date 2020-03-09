@@ -17,7 +17,7 @@ class AppSider extends Component {
 
     handleClick = e => {
       console.log('click ', e)
-      //localStorage.setItem("menuKey",e.key)
+      localStorage.setItem("menuKey",e.key)
       this.setState({
         current: e.key,
       });

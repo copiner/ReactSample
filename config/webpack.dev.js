@@ -78,9 +78,9 @@ module.exports = {
          new MiniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
             // all options are optional
-            //filename: '[name].css',
-            chunkFilename: 'index.css',
-            filename:"index.css",
+            filename: '[name].css',
+            // chunkFilename: 'index.css',
+            // filename:"index.css",
 
             ignoreOrder: false // Enable to remove warnings about conflicting order
           })

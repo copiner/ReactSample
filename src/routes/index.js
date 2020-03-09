@@ -1,5 +1,6 @@
 import React from 'react';
-
+import { Spin } from 'antd';
+import loadable from "@loadable/component";
 
 //异步加载组件
 import AsyncComponent from '../component/async';
@@ -12,9 +13,14 @@ import PostList from '../container/PostList';
 
 import Hoc from '../component/Hoc';
 import Acc from '../component/Account';
-import AppForm from '../component/Form';
+
 import HForm from '../component/Account/form';
-// import Alert from '../component/Alert';
+//import Alert from '../component/Alert';
+
+//import CForm from '../component/Form';
+const CForm = loadable(() => import("../component/Form"), {
+  fallback: <Spin size="large" />
+});
 
 const Home = () =>{
     return  (
@@ -60,7 +66,7 @@ export const busRoutes = [{
   title:"交易明细",
   path: '/login',
   exact: true,
-  render: props => < AppForm {...props} />
+  render: props => < CForm {...props} />
 },{
   title:"电子凭证",
   path: '/hform',
