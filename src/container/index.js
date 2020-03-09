@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route, Redirect,Link, withRouter} from 'react-router-dom';
+import { Switch, Route, Redirect,Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { comRoutes, busRoutes } from '../routes'
@@ -7,9 +7,6 @@ import PrivateRoute from '../routes/PrivateRoute';
 
 import AppSider from '../component/Sider';
 import AppHeader from '../component/Header';
-
-// import UserList from './UserList';
-// import PostList from './PostList';
 
 
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
@@ -20,18 +17,18 @@ const { Header, Content, Sider, Footer } = Layout;
 class App extends Component {
     constructor(props) {
         super(props);
-	console.log(props);
+	       //console.log(props);
     }
 
     render() {
         const { fetchParams } = this.props;
-        let sider = Object.assign(comRoutes, busRoutes);
+        let allRoutes = [...comRoutes, ...busRoutes];
+
         return (
-              <div>
                   <Layout>
                     <AppHeader />
                     <Layout>
-                      <AppSider siders = { sider } />
+                      <AppSider siders = { allRoutes } />
                       <Layout style={{ padding: '0 24px 24px' }}>
                         <Breadcrumb style={{ margin: '16px 0' }}>
                           <Breadcrumb.Item>Home</Breadcrumb.Item>
@@ -40,49 +37,52 @@ class App extends Component {
                         </Breadcrumb>
                         <Content style={{ background: '#fff', padding: 16, margin: 0, minHeight: 280 }}>
                           <Switch>
+
                             {
-                              comRoutes.map((route, index) => {
-                                <Route
+                              // allRoutes.map((item, index) => (
+                              //   <Route
+                              //     fetchParams={ fetchParams }
+                              //     key = {index}
+                              //     path={item.path}
+                              //     exact={item.exact}
+                              //     component={item.render}
+                              //
+                              //   />
+                              // ))
+
+                              // allRoutes.map((route, index) => (
+                              //   <PrivateRoute
+                              //     fetchParams={ fetchParams }
+                              //     key={index}
+                              //     path={route.path}
+                              //     exact={route.exact}
+                              //     component={route.render}
+                              //   />
+                              // ))
+
+                              allRoutes.map((route, index) => {
+                                return <PrivateRoute
                                   fetchParams={ fetchParams }
                                   key={index}
                                   path={route.path}
                                   exact={route.exact}
-                                  // component={route.render}
-                                  component={(props) => {
-                                    let obj = Object.assign({}, {fetchParams}, props)
-                                    return <route.render {...obj}/>
-                                  }}
+                                  component={route.render}
                                 />
                               })
                             }
-                            {
-                              busRoutes.map((route, index) => {
-                                <PrivateRoute
-                                  fetchParams={ fetchParams }
-                                  key={index}
-                                  path={route.path}
-                                  exact={route.exact}
-                                  // component={route.render}
-                                  component={(props) => {
-                                    let obj = Object.assign({}, {fetchParams}, props)
-                                    return <route.render {...obj}/>
-                                  }}
-                                />
-                              })
-                            }
+                            <Redirect to="/" />
                           </Switch>
                         </Content>
                       </Layout>
                   </Layout>
                 </Layout>
-              </div>
         );
     }
 }
 
 const mapStateToProps  = (state) => ({
     // posts: state.posts
-    //posts: state.posts.posts
+    // posts: state.posts.posts
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -90,7 +90,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
-//export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
 
 
 

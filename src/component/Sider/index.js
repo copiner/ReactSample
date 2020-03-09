@@ -9,19 +9,28 @@ const { Header, Content, Sider } = Layout;
 class AppSider extends Component {
     constructor(props) {
         super(props);
-	       console.log(props);
+	      console.log(props);
         this.state = {
-          current: '1'
+          current: localStorage.getItem("menuKey")
         };
     }
 
+    handleClick = e => {
+      console.log('click ', e)
+      //localStorage.setItem("menuKey",e.key)
+      this.setState({
+        current: e.key,
+      });
+    };
+
     render() {
         let siders = this.props.siders;
-        console.log(siders);
+        //console.log(siders);
         return (
             <Sider width={200} style={{ background: '#fff' }}>
                 <Menu theme="light"
                       mode="inline"
+                      onClick={this.handleClick}
                       style={{ height: '100%', borderRight: 0 }}
                       defaultOpenKeys={['sub1','sub2','sub3']}
                       defaultSelectedKeys={[this.state.current]} >

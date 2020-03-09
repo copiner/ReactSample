@@ -22,7 +22,7 @@ render(
     <ConfigProvider locale={zhCN}>
       <Provider store={store}>
         <Router>
-         <Route path="/" component={App} />
+         <App />
         </Router>
       </Provider>
     </ConfigProvider>,
