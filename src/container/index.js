@@ -40,7 +40,7 @@ class App extends Component {
                         <Content style={{ background: '#fff', padding: 16, margin: 0, minHeight: 280 }}>
                           <Switch>
                             {
-                              comRoutes.map((route, index) => (
+                              comRoutes.map((route, index) => {
                                 <Route
                                   fetchParams={ fetchParams }
                                   key={index}
@@ -52,10 +52,10 @@ class App extends Component {
                                     return <route.render {...obj}/>
                                   }}
                                 />
-                              ))
+                              })
                             }
                             {
-                              busRoutes.map((route, index) => (
+                              busRoutes.map((route, index) => {
                                 <PrivateRoute
                                   fetchParams={ fetchParams }
                                   key={index}
@@ -67,7 +67,7 @@ class App extends Component {
                                     return <route.render {...obj}/>
                                   }}
                                 />
-                              ))
+                              })
                             }
                           </Switch>
                         </Content>
