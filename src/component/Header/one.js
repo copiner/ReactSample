@@ -1,9 +1,11 @@
+import React, { Component } from 'react';
+
 import { renderRoutes } from "react-router-config";
 
-const One = ({ route }) => (
-  <div>
-    <h1>One</h1>
+export default ({ route }) => (
+  <span>
+    <span>One</span>
     {/* child routes won't render without this */}
     {renderRoutes(route.routes)}
-  </div>
+  </span>
 );

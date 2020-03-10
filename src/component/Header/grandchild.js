@@ -1,6 +1,8 @@
-export const GrandChild = ({ someProp }) => (
-  <div>
-    <h3>Grand Child</h3>
-    <div>{someProp}</div>
-  </div>
+import React, { Component } from 'react';
+
+export default ({ someProp }) => (
+  <span>
+    <span>Grand Child</span>
+    <span>{someProp}</span>
+  </span>
 );

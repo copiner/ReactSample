@@ -1,5 +1,5 @@
-const Two = ({ route }) => (
-  <div>
-    <h2>TwoTwoT</h2>
-  </div>
+import React, { Component } from 'react';
+
+export default ({ route }) => (
+    <span>TwoTwoT</span>
 );

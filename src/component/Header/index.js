@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Link, Route } from 'react-router-dom';
-import { Layout, Menu } from 'antd';
+import { Menu } from 'antd';
 import { MailOutlined,AppstoreOutlined,SettingOutlined } from '@ant-design/icons';
 
 import { renderRoutes } from "react-router-config";
 
-const { Header } = Layout;
 
 import { hRoutes } from '../../routes/header'
 import "./header.scss"

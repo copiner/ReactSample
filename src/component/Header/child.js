@@ -1,10 +1,14 @@
+import React, { Component } from 'react';
+
 import { renderRoutes } from "react-router-config";
 
-export const Child = ({ route }) => (
+const Child = ({ route }) => (
 
-  <div>
-    <h2>Child</h2>
+  <span>
+    <span>Child</span>
     {/* child routes won't render without this */}
     {renderRoutes(route.routes, { someProp: "these extra props are optional" })}
-  </div>
+  </span>
 );
+
+export default Child;
