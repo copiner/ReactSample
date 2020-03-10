@@ -28,21 +28,18 @@ class AppHeader extends Component {
     render() {
         return (
           <BrowserRouter>
-              <div className="header">
-                <div>
-                  <Menu onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
-                    <Menu.Item key="1"><MailOutlined /><Link to="/">Root</Link></Menu.Item>
-                    <Menu.Item key="2"><MailOutlined /><Link to="/">Home</Link></Menu.Item>
-                    <Menu.Item key="3"><MailOutlined /><Link to="/child/1">Child</Link></Menu.Item>
-                    <Menu.Item key="4"><MailOutlined /><Link to="/child/2/grandchild">GrandChild</Link></Menu.Item>
-                  </Menu>
-                </div>
+                <Menu onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
+                  <Menu.Item key="1"><MailOutlined /><Link to="/">Root</Link></Menu.Item>
+                  <Menu.Item key="2"><MailOutlined /><Link to="/">Home</Link></Menu.Item>
+                  <Menu.Item key="3"><MailOutlined /><Link to="/child/1">Child</Link></Menu.Item>
+                  <Menu.Item key="4"><MailOutlined /><Link to="/child/2/grandchild">GrandChild</Link></Menu.Item>
+                </Menu>
+
                 <div className="address">
                   {
                     renderRoutes(hRoutes)
                   }
                 </div>
-              </div>
             </BrowserRouter>
         );
     }

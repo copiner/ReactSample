@@ -5,8 +5,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin  = require('clean-webpack-plugin').CleanWebpackPlugin;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const isProd = process.env.NODE_ENV === 'development'
+//const isProd = process.env.NODE_ENV === 'development'
 
+console.log(process.env.NODE_ENV)
 
 module.exports = {
   mode: "development",
@@ -52,7 +53,16 @@ module.exports = {
 
                     "style-loader",
 
-                    MiniCssExtractPlugin.loader,
+                    {
+                      loader: MiniCssExtractPlugin.loader,
+                      options: {
+                        // you can specify a publicPath here
+                        // by default it uses publicPath in webpackOptions.output
+                        //publicPath: '../',
+                        hmr: process.env.NODE_ENV === 'development'
+                        //reloadAll: true
+                      },
+                    },
 
                    'css-loader',
                    // Compiles Sass to CSS
@@ -78,11 +88,9 @@ module.exports = {
          new MiniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
             // all options are optional
-            //filename: '[name].css',
-            // chunkFilename: 'index.css',
-            filename:"index.css",
-
-            ignoreOrder: false // Enable to remove warnings about conflicting order
+            filename: '[name].css',
+            chunkFilename: '[id].css',
+            ignoreOrder: false
           })
      ],
      optimization: {
@@ -127,6 +135,7 @@ module.exports = {
       host:"127.0.0.1",
       port: 9000,
       inline: true,
+      //open:true,
       hot: true,
       // proxy: {
       //    '/api': {

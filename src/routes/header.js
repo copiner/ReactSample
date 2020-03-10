@@ -45,31 +45,29 @@ import { renderRoutes } from "react-router-config";
 
 const Root = ({ route }) => (
   <div>
-    <h1>Root</h1>
+    <span>Root</span>
     {/* child routes won't render without this */}
     {renderRoutes(route.routes)}
   </div>
 );
 
 const Home = ({ route }) => (
-  <div>
-    <h2>Home</h2>
-  </div>
+    <span>Home</span>
 );
 
 const Child = ({ route }) => (
-  <div>
-    <h2>Child</h2>
+  <span>
+    <span>Child</span>
     {/* child routes won't render without this */}
     {renderRoutes(route.routes, { someProp: "these extra props are optional" })}
-  </div>
+  </span>
 );
 
 const GrandChild = ({ someProp }) => (
-  <div>
-    <h3>Grand Child</h3>
-    <div>{someProp}</div>
-  </div>
+  <span>
+    <span>Grand Child</span>
+    <span>{someProp}</span>
+  </span>
 );
 
 export const hRoutes = [
