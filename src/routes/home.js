@@ -1,9 +1,17 @@
 import React from 'react';
+import loadable from "@loadable/component";
+import { Spin } from 'antd';
 
-//import { aRoutes, bRoutes, cRoutes } from '../routes'
+const Hoc = loadable(() => import("../component/Hoc"), {
+  fallback: <Spin size="large" />
+});
 
-import Hoc from '../component/Hoc';
-import Acc from '../component/Account';
+const Acc = loadable(() => import("../component/Account"), {
+  fallback: <Spin size="large" />
+});
+
+// import Hoc from '../component/Hoc';
+// import Acc from '../component/Account';
 
 const Home = () =>{
     return  (

@@ -6,8 +6,11 @@ import { Spin } from 'antd';
 const CForm = loadable(() => import("../component/Form"), {
   fallback: <Spin size="large" />
 });
+//import HForm from '../component/Account/form';
+const HForm = loadable(() => import("../component/Account/form"), {
+  fallback: <Spin size="large" />
+});
 
-import HForm from '../component/Account/form';
 
 export const bRoutes = [{
   title:"交易明细",
