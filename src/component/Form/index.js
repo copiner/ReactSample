@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import {Form, Icon, Input, Button, DatePicker } from 'antd';
-const FormItem = Form.Item;
-const { RangePicker } = DatePicker;
+import { Form, Input, Button, DatePicker } from 'antd';
 
 const formItemLayout = {
   labelCol: {
@@ -70,6 +68,10 @@ class CForm extends Component {
       console.log('Failed:', errorInfo);
     };
 
+    onChange = (date, dateString) =>{
+      console.log(date, dateString);
+    }
+
     render() {
 
         return (
@@ -78,7 +80,7 @@ class CForm extends Component {
           onFinishFailed={this.onFinishFailed}
           >
             <Form.Item name="date-picker" label="DatePicker" {...dateConfig}>
-              <DatePicker />
+              <DatePicker onChange={this.onChange} />
             </Form.Item>
 
             <Form.Item label="Username" name="username" {...userConfig}>
@@ -99,4 +101,4 @@ class CForm extends Component {
         );
     }
 }
-export default Form.create()(CForm);
+export default CForm;

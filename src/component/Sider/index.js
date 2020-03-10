@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
-import { Link, Route, withRouter } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
+import { withRouter } from "react-router";
 
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import { Layout, Menu, Breadcrumb } from 'antd';
+import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 
 const { SubMenu } = Menu;
-const { Header, Content, Sider } = Layout;
+
+const { Sider } = Layout;
 
 class AppSider extends Component {
     constructor(props) {
         super(props);
-	      console.log(props);
+	      // console.log(props);
         this.state = {
-          current: localStorage.getItem("menuKey")
+          current: localStorage.getItem("menuKey"),
+          num:3
         };
     }
 
@@ -24,24 +28,48 @@ class AppSider extends Component {
     };
 
     render() {
-        let siders = this.props.siders;
+        let aRoutes = this.props.aRoutes,
+            bRoutes = this.props.bRoutes,
+            cRoutes = this.props.cRoutes,
+            dRoutes = this.props.dRoutes;
         //console.log(siders);
         return (
-            <Sider width={200} style={{ background: '#fff' }}>
-                <Menu theme="light"
-                      mode="inline"
+            <Sider style={{ width: 200 }} style={{ background: '#fff' }}>
+                <Menu mode="inline"
                       onClick={this.handleClick}
-                      defaultSelectedKeys={[this.state.current]} >
-                      <SubMenu key="sub1" title={<span><Icon type="appstore" /><span>交易管理</span></span>}>
-                      {
-                          siders.map((link, index) => {
-                            return <Menu.Item key={index}><Link to={link.path}>{link.title}</Link></Menu.Item>
-                          })
-                      }
+                      defaultSelectedKeys={[this.state.current]}
+                      defaultOpenKeys={['sub1']} >
+                      <SubMenu key="sub1" title={<span><MailOutlined /><span>交易查询</span></span>}>
+                       {
+                            aRoutes.map((link, index) => {
+                              return <Menu.Item key={index}><Link to={link.path}>{link.title}</Link></Menu.Item>
+                            })
+                        }
+                      </SubMenu>
+                      <SubMenu key="sub2" title={<span><MailOutlined /><span>交易管理</span></span>}>
+                        {
+                            bRoutes.map((link, index) => {
+                              return <Menu.Item key={index}><Link to={link.path}>{link.title}</Link></Menu.Item>
+                            })
+                        }
+                      </SubMenu>
+                      <SubMenu key="sub3" title={<span><MailOutlined /><span>报表管理</span></span>}>
+                        {
+                            cRoutes.map((link, index) => {
+                              return <Menu.Item key={index}><Link to={link.path}>{link.title}</Link></Menu.Item>
+                            })
+                        }
+                     </SubMenu>
+                     <SubMenu key="sub4" title={<span><MailOutlined /><span>报表管理</span></span>}>
+                       {
+                           dRoutes.map((link, index) => {
+                             return <Menu.Item key={index}><Link to={link.path}>{link.title}</Link></Menu.Item>
+                           })
+                       }
                     </SubMenu>
-                    {/*
+                     {/*
 
-                      <SubMenu key="sub1" title={<span><Icon type="appstore" /><span>交易管理</span></span>}>
+                      <SubMenu key="sub1" title={<span><MailOutlined /><span>交易管理</span></span>}>
                           <Menu.Item key="1"><Link to="/">交易查询</Link></Menu.Item>
                           <Menu.Item key="2"><Link to="/posts">交易退款</Link></Menu.Item>
                           <Menu.Item key="3"><Link to="/users">退款查询</Link></Menu.Item>

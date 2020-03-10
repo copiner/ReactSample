@@ -2,17 +2,19 @@ import React, { Component } from 'react';
 import { Switch, Route, Redirect,Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { comRoutes, busRoutes } from '../routes'
+import { Layout, Menu, Breadcrumb } from 'antd';
+const { SubMenu } = Menu;
+const { Header, Content, Sider, Footer } = Layout;
+
 import PrivateRoute from '../routes/PrivateRoute';
 
 import AppSider from '../component/Sider';
 import AppHeader from '../component/Header';
 
-
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
-
-const { SubMenu } = Menu;
-const { Header, Content, Sider, Footer } = Layout;
+import { dRoutes } from '../routes/bus';
+import { cRoutes } from '../routes/user';
+import { aRoutes } from '../routes/home';
+import { bRoutes } from '../routes/form';
 
 class App extends Component {
     constructor(props) {
@@ -22,13 +24,13 @@ class App extends Component {
 
     render() {
         const { fetchParams } = this.props;
-        let allRoutes = [...comRoutes, ...busRoutes];
+        let allRoutes = [...aRoutes, ...bRoutes, ...cRoutes, ...dRoutes];
 
         return (
                   <Layout>
                     <AppHeader />
                     <Layout>
-                      <AppSider siders = { allRoutes } />
+                      <AppSider aRoutes = { aRoutes } bRoutes = { bRoutes } cRoutes = { cRoutes } dRoutes = { dRoutes }/>
                       <Layout style={{ padding: '0 24px 24px' }}>
                         <Breadcrumb style={{ margin: '16px 0' }}>
                           <Breadcrumb.Item>Home</Breadcrumb.Item>
@@ -37,7 +39,6 @@ class App extends Component {
                         </Breadcrumb>
                         <Content style={{ background: '#fff', padding: 16, margin: 0, minHeight: 280 }}>
                           <Switch>
-
                             {
                               // allRoutes.map((item, index) => (
                               //   <Route

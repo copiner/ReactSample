@@ -48,30 +48,37 @@ class Acc extends Component {
 
     render() {
         return (
-            <div className="form-menu">
-              <div className="form-criteria">
+            <div>
+              <div>
                  <span><RangePicker /></span>
                  <div>
                  <span><input ref={(input) => this.input = input} /></span>
-                 <span><Input style={{ width: 180 }} name="name" type="text" placeholder="name" value={this.state.name} onChange={this.nameInput} /></span>
-                 <span><Input style={{ width: 180 }} type="password" name="password" placeholder="password" value={this.state.password} onChange={this.passwordInput} /></span>
+                 <span>
+                  <Input name="name" type="text" placeholder="name" value={this.state.name} onChange={this.nameInput} />
+                 </span>
+                 <span>
+                  <Input type="password" name="password" placeholder="password" value={this.state.password} onChange={this.passwordInput} />
+                 </span>
                  </div>
-                 <span><Select
-                 defaultValue="lucy"
-                 style={{ width: 160 }}
-                 placeholder="Select a person">
-                  <Option value="jack">Jack</Option>
-                  <Option value="lucy">Lucy</Option>
-                  <Option value="Yiminghe">yiminghe</Option>
-                </Select></span>
-                <span><Select
-                defaultValue="lucy"
-                style={{ width: 160 }}
-                placeholder="Select a person">
-                 <Option value="jack">Jack</Option>
-                 <Option value="lucy">Lucy</Option>
-                 <Option value="Yiminghe">yiminghe</Option>
-               </Select></span>
+                 <span>
+                   <Select defaultValue="lucy"
+                           style={{ width: 160 }}
+                           placeholder="Select a person"
+                    >
+                      <Option value="jack">Jack</Option>
+                      <Option value="lucy">Lucy</Option>
+                      <Option value="Yiminghe">yiminghe</Option>
+                  </Select>
+                </span>
+                <span>
+                  <Select defaultValue="lucy"
+                          style={{ width: 160 }}
+                          placeholder="Select a person">
+                   <Option value="jack">Jack</Option>
+                   <Option value="lucy">Lucy</Option>
+                   <Option value="Yiminghe">yiminghe</Option>
+                 </Select>
+               </span>
               </div>
               <div onChange={this.changeColor}>
                  <h2>选择你喜欢的颜色</h2>

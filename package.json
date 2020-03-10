@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --color --config config/webpack.dev.js --open",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --color --config config/webpack.dev.js",
     "build": "cross-env NODE_ENV=production && webpack --config config/webpack.pro.js",
     "babel": "./node_modules/.bin/babel src --out-dir dist"
   },
@@ -50,6 +50,7 @@
     "react-dom": "^16.10.2",
     "react-redux": "^7.1.1",
     "react-router": "^5.1.2",
+    "react-router-config": "^5.1.1",
     "react-router-dom": "^5.1.2",
     "react-transition-group": "^4.3.0",
     "redux": "^4.0.4",

@@ -1,43 +1,49 @@
 import React, { Component } from 'react';
-import { Link, Route } from 'react-router-dom';
+import { BrowserRouter, Link, Route } from 'react-router-dom';
+import { Layout, Menu } from 'antd';
+import { MailOutlined,AppstoreOutlined,SettingOutlined } from '@ant-design/icons';
 
-import { Layout, Menu, Icon } from 'antd';
+import { renderRoutes } from "react-router-config";
 
-const { SubMenu } = Menu;
 const { Header } = Layout;
+
+import { hRoutes } from '../../routes/header'
+import "./header.scss"
 
 class AppHeader extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          current: '1',
-          username:"李笑笑"
+          current: '1'
         };
     }
 
+    handleClick = e => {
+      // console.log('click ', e);
+      this.setState({
+        current: e.key,
+      });
+    };
+
     render() {
         return (
-            <div className="header-menu">
-              <Header className="header">
-                <div className="logo" >互联网支付</div>
-                  <Menu
-                    theme="dark"
-                    mode="horizontal"
-                    defaultSelectedKeys={[this.state.current]}
-                    style={{ lineHeight: '64px' }} >
-                      <Menu.Item key="1">首页</Menu.Item>
-                      <Menu.Item key="2">交易中心</Menu.Item>
-                      <Menu.Item key="3">账务中心</Menu.Item>
-                      <Menu.Item key="4">管理中心</Menu.Item>
-                      <SubMenu
-                        style={{ float: 'right', minWidth:160 }}
-                        title={<span><Icon type="user" />{this.state.username}</span>}>
-                          <Menu.Item key="5">切换账号</Menu.Item>
-                          <Menu.Item key="6">退出</Menu.Item>
-                      </SubMenu>
+          <BrowserRouter>
+              <div className="header">
+                <div>
+                  <Menu onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
+                    <Menu.Item key="1"><MailOutlined /><Link to="/">Root</Link></Menu.Item>
+                    <Menu.Item key="2"><MailOutlined /><Link to="/">Home</Link></Menu.Item>
+                    <Menu.Item key="3"><MailOutlined /><Link to="/child/1">Child</Link></Menu.Item>
+                    <Menu.Item key="4"><MailOutlined /><Link to="/child/2/grandchild">GrandChild</Link></Menu.Item>
                   </Menu>
-                </Header>
-            </div>
+                </div>
+                <div className="address">
+                  {
+                    renderRoutes(hRoutes)
+                  }
+                </div>
+              </div>
+            </BrowserRouter>
         );
     }
 }

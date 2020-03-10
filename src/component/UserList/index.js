@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Table } from 'antd';
 
 //import imgUrl from './smk.png'
-import AppForm from '../Content';
+import AppForm from './content';
 
 class UserList extends Component {
     //挂载阶段

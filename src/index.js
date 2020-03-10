@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
@@ -18,33 +18,23 @@ moment.locale('zh-cn');
 
 const store = configureStore();
 
-render(
-    <ConfigProvider locale={zhCN}>
-      <Provider store={store}>
-        <Router>
-         <App />
-        </Router>
-      </Provider>
-    </ConfigProvider>,
-    document.getElementById('root')
-);
-
-// async function getLodash() {
-//   const element = document.createElement('div');
-//   const moment = await import(/* webpackChunkName: "lodash" */ 'moment');
-//   //element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-//
-//   return element;
-// }
-
-async function getLodash() {
-  const element = document.createElement('div');
-  const { default: _ } = await import(/* webpackChunkName: "lodash" */ 'lodash');
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-
-  return element;
+let render = () => {
+  ReactDOM.render(
+      <ConfigProvider locale={zhCN}>
+        <Provider store={store}>
+          <Router>
+           <App />
+          </Router>
+        </Provider>
+      </ConfigProvider>,
+      document.getElementById('root')
+  );
 }
 
-getLodash().then(component => {
-   document.body.appendChild(component);
-})
+render();
+
+if(module.hot) {
+  module.hot.accept(['./container'], () => {
+    render()
+  })
+}
