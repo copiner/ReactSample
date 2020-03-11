@@ -5,7 +5,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin  = require('clean-webpack-plugin').CleanWebpackPlugin;
 const CompressionPlugin = require('compression-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 // console.log(process.NODE_ENV);
 
@@ -67,7 +66,6 @@ module.exports = {
     plugins: [
          new webpack.DefinePlugin({
             PRODUCTION: JSON.stringify(true),
-            VERSION: JSON.stringify('5fa3b9'),
             ENV: JSON.stringify(process.env.NODE_ENV)
          }),
          new HtmlWebpackPlugin({ // 打包输出HTML
@@ -86,14 +84,29 @@ module.exports = {
 
             ignoreOrder: false, // Enable to remove warnings about conflicting order
           })
-     ]
+     ],
+     //SplitChunksPlugin
+     optimization: {
+       splitChunks: {
+         chunks: 'async',
+         minSize: 30000,
+         maxSize: 0,
+         minChunks: 1,
+         maxAsyncRequests: 6,
+         maxInitialRequests: 4,
+         automaticNameDelimiter: '~',
+         automaticNameMaxLength: 30,
+         cacheGroups: {
+           defaultVendors: {
+             test: /[\\/]node_modules[\\/]/,
+             priority: -10
+           },
+           default: {
+             minChunks: 2,
+             priority: -20,
+             reuseExistingChunk: true
+           }
+         }
+       }
+     }
 }
-//
-// if (!isProd) {
-//   const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-//   webpackConfig.plugins.push(new BundleAnalyzerPlugin());
-// }
-
-
-
-//module.exports = webpackConfig;
