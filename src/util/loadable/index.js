@@ -2,15 +2,17 @@ import React, { Component } from 'react';
 //Code Splitting
 const asyncComponent = (importComponent) => {
   return class extends Component {
-    constructor() {
-      super();
+    constructor(props) {
+      super(props);
       this.state = {
         component: null
       }
     }
     componentDidMount() {
+      //console.log(importComponent)
       importComponent()
         .then(cmp => {
+          //console.log(cmp.default)
           this.setState({ component: cmp.default });
         });
     }
