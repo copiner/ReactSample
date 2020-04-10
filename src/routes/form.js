@@ -2,12 +2,12 @@ import loadable from "@loadable/component";
 import React, { Component } from 'react';
 import { Spin } from 'antd';
 
-//import CForm from '../component/Form';
-const CForm = loadable(() => import("../component/Form"), {
+//import CForm from '../component/form';
+const CForm = loadable(() => import("../component/form"), {
   fallback: <Spin size="large" />
 });
-//import HForm from '../component/Account/form';
-const HForm = loadable(() => import("../component/Account/form"), {
+//import HForm from '../component/account/form';
+const HForm = loadable(() => import("../component/account/form"), {
   fallback: <Spin size="large" />
 });
 

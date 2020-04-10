@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 
 
-import UserList from '../component/UserList';
+import User from '../component/UserList';
 
 // import {
 //     GET_USERS_SUCESS,
@@ -39,7 +39,7 @@ const mapDispatchToProps = (dispatch) => ({
 //     }
 // });
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserList);
+export default connect(mapStateToProps, mapDispatchToProps)(User);
 
 
 //bindActionCreators(actionCreators, dispatch)

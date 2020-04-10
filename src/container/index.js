@@ -6,10 +6,10 @@ import { Layout, Menu, Breadcrumb } from 'antd';
 const { SubMenu } = Menu;
 const { Header, Content, Sider, Footer } = Layout;
 
-import PrivateRoute from '../routes/PrivateRoute';
+import PrivateRoute from '../routes/privateRoute';
 
-import AppSider from '../component/Sider';
-import AppHeader from '../component/Header';
+import AppSider from '../component/sider';
+import AppHeader from '../component/header';
 
 import { dRoutes } from '../routes/bus';
 import { cRoutes } from '../routes/user';

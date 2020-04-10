@@ -2,16 +2,16 @@ import React from 'react';
 import loadable from "@loadable/component";
 import { Spin } from 'antd';
 
-const Hoc = loadable(() => import("../component/Hoc"), {
+const Hoc = loadable(() => import("../component/hoc"), {
   fallback: <Spin size="large" />
 });
 
-const Acc = loadable(() => import("../component/Account"), {
+const Acc = loadable(() => import("../component/account"), {
   fallback: <Spin size="large" />
 });
 
-// import Hoc from '../component/Hoc';
-// import Acc from '../component/Account';
+// import Hoc from '../component/hoc';
+// import Acc from '../component/account';
 
 const Home = () =>{
     return  (

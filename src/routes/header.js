@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import AsyncComponent from '../util/loadable';//异步加载组件
 import { renderRoutes } from "react-router-config";
 
-const One = AsyncComponent(() => import('../component/Header/one'));
-const Two = AsyncComponent(() => import('../component/Header/two'));
-const Child = AsyncComponent(() => import('../component/Header/child'));
-const GrandChild = AsyncComponent(() => import('../component/Header/grandchild'));
+const One = AsyncComponent(() => import('../component/header/one'));
+const Two = AsyncComponent(() => import('../component/header/two'));
+const Child = AsyncComponent(() => import('../component/header/child'));
+const GrandChild = AsyncComponent(() => import('../component/header/grandchild'));
 
 export const hRoutes = [
   {
