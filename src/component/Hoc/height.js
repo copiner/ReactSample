@@ -18,7 +18,7 @@ import React, { Component } from 'react';
 const HOC = WrappedComponent => {
   return class extends Component {
 
-    handleClick() {
+    handleClick =() =>{
       console.log('click');
     }
 

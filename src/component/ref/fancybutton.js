@@ -11,14 +11,16 @@ class SButton extends React.Component {
     super(props);
   }
 
+  handleClick = () => {
+    //console.log(this)
+  }
+
   render() {
 
     return (
-      <div>{this.props.label}</div>
+      <button onClick={this.handleClick}>{this.props.label + this.props.kitty}</button>
     )
   }
 }
 
-// Rather than exporting FancyButton, we export LogProps.
-// It will render a FancyButton though.
 export default logProps(SButton);

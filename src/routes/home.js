@@ -17,6 +17,11 @@ const PButton = loadable(() => import("../component/ref"), {
   fallback: <Spin size="large" />
 });
 
+
+const ForRef = loadable(() => import("../component/ref/app"), {
+  fallback: <Spin size="large" />
+});
+
 const Home = () =>{
     return  (
         <h1>Home</h1>
@@ -43,4 +48,9 @@ export const aRoutes = [{
   path: '/pbutton',
   exact: true,
   render: PButton
+},{
+  title:"交易输入",
+  path: '/forref',
+  exact: true,
+  render: ForRef
 }];

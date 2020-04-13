@@ -1,13 +1,7 @@
-
 import React, { Component } from 'react';
 import FancyButton from './FancyButton';
 
 // const ref = React.createRef();
-
-// The FancyButton component we imported is the LogProps HOC.
-// Even though the rendered output will be the same,
-// Our ref will point to LogProps instead of the inner FancyButton component!
-// This means we can't call e.g. ref.current.focus()
 
 class PButton extends React.Component {
   constructor(props) {
@@ -17,22 +11,22 @@ class PButton extends React.Component {
   }
 
   handleClick = () => {
-    console.log(this.buttonRef.current)
+    console.log(this.buttonRef.current)//父组件拿到子组件的ref
   }
 
   render() {
 
     return (
-      <FancyButton
-        label="Click Me"
-        handleClick={this.handleClick}
-        kitty="kitty"
-        ref={this.buttonRef}
-      />
+      <div>
+        <button onClick={this.handleClick}>Click</button>
+        <FancyButton
+          label="Click Me"
+          kitty="kitty"
+          ref={this.buttonRef}
+        />
+      </div>
     )
   }
 }
 
-// Rather than exporting FancyButton, we export LogProps.
-// It will render a FancyButton though.
 export default PButton;
