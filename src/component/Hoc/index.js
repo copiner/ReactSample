@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 
-import withHeader from './height';
+import HocInput from './hocinput';
 
-//@withHeader
-class Test extends Component {
+class Hoc extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -15,10 +14,11 @@ class Test extends Component {
       //console.log(this.props);
         return (
           <div>
-            simpleHoc
+            <HocInput name="wdaonngg" />
+            <HocInput name="instream" />
           </div>
         );
     }
 }
 
-export default withHeader(Test);
+export default Hoc;
