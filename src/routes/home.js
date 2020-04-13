@@ -13,6 +13,10 @@ const Acc = loadable(() => import("../component/account"), {
 // import Hoc from '../component/hoc';
 // import Acc from '../component/account';
 
+const PButton = loadable(() => import("../component/ref"), {
+  fallback: <Spin size="large" />
+});
+
 const Home = () =>{
     return  (
         <h1>Home</h1>
@@ -34,4 +38,9 @@ export const aRoutes = [{
   path: '/acc',
   exact: true,
   render: Acc
+},{
+  title:"交易按钮",
+  path: '/pbutton',
+  exact: true,
+  render: PButton
 }];
