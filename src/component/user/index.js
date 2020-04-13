@@ -20,7 +20,7 @@ class UserList extends Component {
 
     render() {
         const { users } = this.props;
-        console.log(users)
+        // console.log(users)
 
         const columns = [{
             title: '姓名',

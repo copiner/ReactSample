@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 
 
-import User from '../component/UserList';
+import User from '../component/user';
 
 // import {
 //     GET_USERS_SUCESS,
