@@ -11,7 +11,9 @@ class PButton extends React.Component {
   }
 
   handleClick = () => {
-    console.log(this.buttonRef.current)//父组件拿到子组件的ref
+    // console.log(this.buttonRef.current)//父组件拿到子组件的ref
+    console.log(Toast);
+    Toast.add('msg', {position: 'right'})
   }
 
   render() {

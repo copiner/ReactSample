@@ -10,6 +10,7 @@ import PrivateRoute from '../routes/privateRoute';
 
 import AppSider from '../component/sider';
 import AppHeader from '../component/header';
+import Toast from '../component/toast';
 
 import { dRoutes } from '../routes/bus';
 import { cRoutes } from '../routes/user';
@@ -19,7 +20,11 @@ import { bRoutes } from '../routes/form';
 class App extends Component {
     constructor(props) {
         super(props);
-	       //console.log(props);
+	       this.toast = React.createRef();
+    }
+
+    componentDidMount(){
+      window.Toast = this.toast.current;
     }
 
     render() {
@@ -28,6 +33,7 @@ class App extends Component {
 
         return (
                   <Layout>
+                    <Toast ref={this.toast} />{/*弹窗*/}
                     <AppHeader />
                     <Layout>
                       <AppSider aRoutes = { aRoutes } bRoutes = { bRoutes } cRoutes = { cRoutes } dRoutes = { dRoutes }/>
