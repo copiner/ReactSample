@@ -25,7 +25,7 @@ class Toast extends Component {
     }
   }
 
-  add = (msg = '提示不能为空', {expire = 5000, type = 'default', position = 'top', style={}}) => {
+  add = (msg = 'a msg is necessary', {expire = 5000, type = 'default', position = 'top', style={}}) => {
     const zindex = this.state.zindex + 1
     const message = {
       id: v4(),
