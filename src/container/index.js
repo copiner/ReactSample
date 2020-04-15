@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { Layout, Menu, Breadcrumb } from 'antd';
 const { SubMenu } = Menu;
-const { Header, Content, Sider, Footer } = Layout;
+const { Content } = Layout;
 
 import PrivateRoute from '../routes/privateRoute';
 

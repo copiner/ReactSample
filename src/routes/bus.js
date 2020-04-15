@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import asyncComponent from '../util/loadable';
 const Counter = asyncComponent(() => import('../component/counter'));
 
+const Postcss = asyncComponent(() => import('../component/postcss'));
+
 // const BarReact = asyncComponent(() => import(/* webpackChunkName: "BarReact" */'./EchartsDemo/BarReact')) //柱状图组件
 // const LineReact = asyncComponent(() => import(/* webpackChunkName: "LineReact" */'./EchartsDemo/LineReact'))  //折线图组件
 // const ScatterReact = asyncComponent(() => import(/* webpackChunkName: "ScatterReact" */'./EchartsDemo/ScatterReact'))  //散点图组件
@@ -18,6 +20,12 @@ export const dRoutes = [
   path: '/barchart',
   exact: true,
   render: props => < BarChart {...props} />
+},
+{
+  title:"下代样式",
+  path: '/postcss',
+  exact: true,
+  render: props => < Postcss {...props} />
 },
 {
   title:"统计报表",

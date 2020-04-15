@@ -4,7 +4,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin  = require('clean-webpack-plugin').CleanWebpackPlugin;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
+const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
 //const isProd = process.env.NODE_ENV === 'development'
 
 console.log(process.env.NODE_ENV)
@@ -32,6 +32,7 @@ module.exports = {
             },
             {
               test: /\.(png|jpg|gif)$/,
+              exclude: /node_modules/,
               use: [
                 {
                   loader: 'file-loader',
@@ -48,7 +49,9 @@ module.exports = {
               ]
             },
             {
-                test: /\.(sa|sc|c)ss$/,
+                test: /\.css$/,
+                include: /src/,
+                // include: path.resolve(__dirname, "/src"),
                 use: [
 
                     "style-loader",
@@ -63,10 +66,22 @@ module.exports = {
                         //reloadAll: true
                       },
                     },
-
-                   'css-loader',
-                   // Compiles Sass to CSS
-                   'sass-loader'
+                    {
+                     loader: 'css-loader',
+                     options: {
+                       importLoaders: 1,
+                     }
+                   },
+                   'postcss-loader'
+                ]
+            },
+            {
+                test: /\.css$/,
+                include: /[\\/]node_modules[\\/](antd)[\\/]/,
+                //include: path.resolve(__dirname, "/src"),
+                use: [
+                    "style-loader",
+                    'css-loader'
                 ]
             }
         ]
@@ -77,11 +92,12 @@ module.exports = {
              VERSION: JSON.stringify('5fa3b9')
           }),
          new HtmlWebpackPlugin({
-            title: 'sample',
+            title: 'Hello',
             template: "./public/index.html",
             filename: "./index.html",
             favicon: "./public/favicon.ico"
          }),
+         new AntdDayjsWebpackPlugin(),
          new CleanWebpackPlugin(),
          new webpack.HotModuleReplacementPlugin(),
 

@@ -6,13 +6,11 @@ import { Layout, Menu, Breadcrumb } from 'antd';
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 
 const { SubMenu } = Menu;
-
-const { Sider } = Layout;
+const { Header, Content, Sider } = Layout;
 
 class AppSider extends Component {
     constructor(props) {
         super(props);
-	      // console.log(props);
         this.state = {
           current: localStorage.getItem("menuKey"),
           num:3
@@ -34,7 +32,7 @@ class AppSider extends Component {
             dRoutes = this.props.dRoutes;
         //console.log(siders);
         return (
-            <Sider style={{ width: 200 }} style={{ background: '#fff' }}>
+            <Sider width={200} className="site-layout-background">
                 <Menu mode="inline"
                       onClick={this.handleClick}
                       defaultSelectedKeys={[this.state.current]}

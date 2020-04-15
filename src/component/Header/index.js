@@ -7,7 +7,7 @@ import { renderRoutes } from "react-router-config";
 
 
 import { hRoutes } from '../../routes/header'
-import "./header.scss"
+import "./header.css"
 
 class AppHeader extends Component {
     constructor(props) {

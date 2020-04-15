@@ -20,6 +20,6 @@ module.exports = {
      }],
      "@babel/plugin-syntax-dynamic-import",
      '@babel/plugin-proposal-class-properties',
-     ["import", { "libraryName": "antd", "style": "css" }]
+     ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]
   ]
 };
