@@ -69,7 +69,9 @@ module.exports = {
                     {
                      loader: 'css-loader',
                      options: {
-                       importLoaders: 1,
+                         modules: true,
+                         importLoaders: 1
+                         
                      }
                    },
                    'postcss-loader'
@@ -78,7 +80,6 @@ module.exports = {
             {
                 test: /\.css$/,
                 include: /[\\/]node_modules[\\/](antd)[\\/]/,
-                //include: path.resolve(__dirname, "/src"),
                 use: [
                     "style-loader",
                     'css-loader'
