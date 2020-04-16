@@ -1,20 +1,16 @@
-/* Shared */
-// @import "./colors.css";
-// @import "./typo.css";
-/* Components */
-//@import "./article.css";
 
 import React, { Component } from 'react';
-import style from "./article.css";
-console.log(style)
-class Pxample extends Component{
+
+import styles from './article.css';
+console.log(styles)
+class Cexample extends Component{
     render() {
         return (
             <div>
-                <div className={style.title}>
+                <div className={styles.title}>
                    <p>TITLE</p>
                 </div>
-                <div className={style.article}>
+                <div className={styles.article}>
                   <p>ARTICLE</p>
                 </div>
             </div>
@@ -22,4 +18,4 @@ class Pxample extends Component{
     }
 }
 
-export default Pxample
+export default Cexample;

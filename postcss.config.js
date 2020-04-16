@@ -1,7 +1,10 @@
+
 module.exports = {
   plugins: {
+    // 'autoprefixer':{},
     'postcss-import': {},
-    'postcss-cssnext': {},
-    'postcss-modules': {},
+    'postcss-cssnext': {},//含有autoprefixer
+    // 'postcss-modules': {},
+    // 'cssnano': {}
   },
 };

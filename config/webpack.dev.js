@@ -71,10 +71,9 @@ module.exports = {
                      options: {
                          modules: true,
                          importLoaders: 1
-                         
                      }
                    },
-                   'postcss-loader'
+                   { loader: 'postcss-loader' }
                 ]
             },
             {
@@ -88,29 +87,29 @@ module.exports = {
         ]
     },
     plugins: [
-          new webpack.DefinePlugin({
-             PRODUCTION: JSON.stringify(true),
-             VERSION: JSON.stringify('5fa3b9')
-          }),
-         new HtmlWebpackPlugin({
-            title: 'Hello',
-            template: "./public/index.html",
-            filename: "./index.html",
-            favicon: "./public/favicon.ico"
-         }),
-         new AntdDayjsWebpackPlugin(),
-         new CleanWebpackPlugin(),
-         new webpack.HotModuleReplacementPlugin(),
+      new webpack.DefinePlugin({
+         PRODUCTION: JSON.stringify(true),
+         VERSION: JSON.stringify('5fa3b9')
+      }),
+      new HtmlWebpackPlugin({
+        title: 'Hello',
+        template: "./public/index.html",
+        filename: "./index.html",
+        favicon: "./public/favicon.ico"
+      }),
+      new AntdDayjsWebpackPlugin(),
+      new CleanWebpackPlugin(),
+      new webpack.HotModuleReplacementPlugin(),
 
-         new MiniCssExtractPlugin({
-            // Options similar to the same options in webpackOptions.output
-            // all options are optional
-            filename: '[name].css',
-            chunkFilename: '[id].css',
-            ignoreOrder: false
-          })
-     ],
-     optimization: {
+      new MiniCssExtractPlugin({
+        // Options similar to the same options in webpackOptions.output
+        // all options are optional
+        filename: '[name].css',
+        chunkFilename: '[id].css',
+        ignoreOrder: false
+      })
+    ],
+    optimization: {
         splitChunks: {
           chunks: 'all',
           minSize: 30000,

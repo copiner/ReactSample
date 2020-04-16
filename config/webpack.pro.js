@@ -50,7 +50,6 @@ module.exports = {
                 include: /src/,
                 use: [
 
-                  // Creates `style` nodes from JS strings
                   'style-loader',
 
                   MiniCssExtractPlugin.loader,
@@ -58,7 +57,8 @@ module.exports = {
                   {
                    loader: 'css-loader',
                    options: {
-                     importLoaders: 1,
+                     modules: true,
+                     importLoaders: 1
                    }
                  },
                  {
@@ -69,7 +69,6 @@ module.exports = {
             {
                 test: /\.css$/,
                 include: /[\\/]node_modules[\\/](antd)[\\/]/,
-                //include: path.resolve(__dirname, "/src"),
                 use: [
                     "style-loader",
                     'css-loader'
@@ -93,12 +92,9 @@ module.exports = {
          new CleanWebpackPlugin(),
          new CompressionPlugin(),
          new MiniCssExtractPlugin({
-            // Options similar to the same options in webpackOptions.output
-            // all options are optional
             filename: 'index[hash].css',
             chunkFilename: 'index[id].css',
-
-            ignoreOrder: false, // Enable to remove warnings about conflicting order
+            ignoreOrder: false
           })
      ],
      //SplitChunksPlugin
