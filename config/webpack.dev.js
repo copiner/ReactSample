@@ -1,34 +1,36 @@
-const webpack = require('webpack');
-const path = require("path");
+const Webpack = require('webpack');
+const { resolve } = require("path");
+const { CleanWebpackPlugin }  = require('clean-webpack-plugin');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin  = require('clean-webpack-plugin').CleanWebpackPlugin;
+
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
-//const isProd = process.env.NODE_ENV === 'development'
+const AddAssetHtmlWebpackkPlugin = require('add-asset-html-webpack-plugin');
 
-console.log(process.env.NODE_ENV)
+const isDev = process.env.NODE_ENV === 'development'
+
 
 module.exports = {
   mode: "development",
-  devtool: 'inline-source-map',
+  devtool: 'eval-source-map',
   entry: {
-     app: './src/index.js'
+     app: ['./src/index.js']
   },
   output: {
-    path: path.resolve(__dirname, '../build'),
-    filename: 'bundle-[hash].js',
-    chunkFilename: '[name]-[hash].js',
+    path: resolve(__dirname, '../build'),
+    filename: '[name].bundle.js',
+    chunkFilename: '[name].bundle.js',
     publicPath:'/'
   },
   module: {
         rules: [
             {
                 test: /(\.jsx|\.js)$/,
+                include: resolve(__dirname, '../src'),
                 use: {
                     loader: "babel-loader",
-                },
-                exclude: /node_modules/
+                }
             },
             {
               test: /\.(png|jpg|gif)$/,
@@ -43,27 +45,20 @@ module.exports = {
                 {
                   loader: 'url-loader',
                   options: {
-                    limit: 8192
+                    limit: 8*1024
                   }
                 }
               ]
             },
             {
                 test: /\.css$/,
-                include: /src/,
-                // include: path.resolve(__dirname, "/src"),
+                include: resolve(__dirname, "../src"),
                 use: [
-
-                    "style-loader",
-
                     {
                       loader: MiniCssExtractPlugin.loader,
                       options: {
-                        // you can specify a publicPath here
-                        // by default it uses publicPath in webpackOptions.output
-                        //publicPath: '../',
-                        hmr: process.env.NODE_ENV === 'development'
-                        //reloadAll: true
+                        hmr: isDev,
+                        reloadAll: true
                       },
                     },
                     {
@@ -87,7 +82,7 @@ module.exports = {
         ]
     },
     plugins: [
-      new webpack.DefinePlugin({
+      new Webpack.DefinePlugin({
          PRODUCTION: JSON.stringify(true),
          VERSION: JSON.stringify('5fa3b9')
       }),
@@ -99,7 +94,7 @@ module.exports = {
       }),
       new AntdDayjsWebpackPlugin(),
       new CleanWebpackPlugin(),
-      new webpack.HotModuleReplacementPlugin(),
+      new Webpack.HotModuleReplacementPlugin(),
 
       new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output
@@ -107,51 +102,47 @@ module.exports = {
         filename: '[name].css',
         chunkFilename: '[id].css',
         ignoreOrder: false
-      })
+      }),
+      new Webpack.DllReferencePlugin({
+        manifest:resolve(__dirname,'../dll/manifest.json')
+      }),
+      new AddAssetHtmlWebpackkPlugin([
+        {filepath:resolve(__dirname,'../dll/vendors.js')},
+        {filepath:resolve(__dirname,'../dll/react.js')},
+        {filepath:resolve(__dirname,'../dll/antd.js')},
+        {filepath:resolve(__dirname,'../dll/echarts.js')}
+      ])
     ],
     optimization: {
-        splitChunks: {
-          chunks: 'all',
-          minSize: 30000,
-          maxSize: 0,
-          minChunks: 1,
-          maxAsyncRequests: 6,
-          maxInitialRequests: 6,
-          automaticNameDelimiter: '~',
-          automaticNameMaxLength: 30,
-          cacheGroups: {
-            vendors: {
-              //test: /[\\/]node_modules[\\/]/,
-              test: /[\\/]node_modules[\\/](react|react-dom|react-redux|redux|react-router|react-router-dom)[\\/]/,
-              priority: -10,
-              name:'vendors'
-            },
-            middles : {
-              test: /[\\/]node_modules[\\/](redux-saga|redux-thunk|axios)[\\/]/,
-              priority: -15,
-              name:'middles'
-            },
-            commons : {
-              test: /[\\/]node_modules[\\/](immutable|moment)[\\/]/,
-              priority: -15,
-              name:'commons'
-            },
-            default: {
-              minChunks: 2,
-              priority: -20,
-              reuseExistingChunk: true
-            }
+      splitChunks: {
+        chunks: 'async',
+        minSize: 30000,
+        maxSize: 0,
+        minChunks: 1,
+        maxAsyncRequests: 5,
+        maxInitialRequests: 3,
+        automaticNameDelimiter: '~',
+        name: true,
+        cacheGroups: {
+          vendors: {
+            test: /[\\/]node_modules[\\/]/,
+            //test: /[\\/]node_modules[\\/](react|react-dom|redux)[\\/]/,
+            priority: -10
+          },
+          default: {
+            minChunks: 2,
+            priority: -20,
+            reuseExistingChunk: true
           }
-       }
+        }
+      }
     },
-   stats: { children: false },
    devServer: {
-      contentBase: path.resolve(__dirname, "build"),
+      contentBase: resolve(__dirname, "../build"),
       historyApiFallback: true,
       host:"127.0.0.1",
       port: 9000,
       inline: true,
-      //open:true,
       hot: true,
       // proxy: {
       //    '/api': {

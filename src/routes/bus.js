@@ -3,16 +3,9 @@ import React, { Component } from 'react';
 import asyncComponent from '../util/loadable';
 const Counter = asyncComponent(() => import('../component/counter'));
 
-const Postcss = asyncComponent(() => import('../component/postcss'));
+const Postcss = asyncComponent(() => import(/* webpackChunkName: "postcss" */'../component/postcss'));
 
-// const BarReact = asyncComponent(() => import(/* webpackChunkName: "BarReact" */'./EchartsDemo/BarReact')) //柱状图组件
-// const LineReact = asyncComponent(() => import(/* webpackChunkName: "LineReact" */'./EchartsDemo/LineReact'))  //折线图组件
-// const ScatterReact = asyncComponent(() => import(/* webpackChunkName: "ScatterReact" */'./EchartsDemo/ScatterReact'))  //散点图组件
-// const MapReact = asyncComponent(() => import(/* webpackChunkName: "MapReact" */'./EchartsDemo/MapReact'))  //地图组件
-// const RadarReact = asyncComponent(() => import(/* webpackChunkName: "RadarReact" */'./EchartsDemo/RadarReact')) //雷达图组件
-// const CandlestickReact = asyncComponent(() => import(/* webpackChunkName: "CandlestickReact" */'./EchartsDemo/CandlestickReact')) //k线图组件
-
-const BarChart = asyncComponent(() => import(/* webpackChunkName: "Pie" */'../component/chart/bar'))
+const BarChart = asyncComponent(() => import(/* webpackChunkName: "bar" */'../component/chart/bar'))
 
 export const dRoutes = [
 {

@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 import styles from './article.css';
-console.log(styles)
+
 class Cexample extends Component{
     render() {
         return (

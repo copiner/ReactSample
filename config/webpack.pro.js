@@ -1,20 +1,21 @@
-const webpack = require('webpack');
-const path = require("path");
+const Webpack = require('webpack');
+const { resolve } = require("path");
+const { CleanWebpackPlugin }  = require('clean-webpack-plugin');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin  = require('clean-webpack-plugin').CleanWebpackPlugin;
-const CompressionPlugin = require('compression-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
-// console.log(process.NODE_ENV);
+const AddAssetHtmlWebpackkPlugin = require('add-asset-html-webpack-plugin');
+//console.log(process.NODE_ENV);
 
 module.exports = {
   mode: "production",
+  devtool: 'cheap-module-eval-source-map',
   entry: {
-     app: './src/index.js'
+     app: ['./src/index.js']
   },
   output: {
-    path: path.resolve(__dirname, '../build'),
+    path: resolve(__dirname, '../build'),
     filename: '[name].bundle.js',
     chunkFilename: '[name].bundle.js',
     publicPath:'/'
@@ -23,10 +24,10 @@ module.exports = {
         rules: [
             {
                 test: /(\.jsx|\.js)$/,
+                include: resolve(__dirname, '../src'),
                 use: {
                     loader: "babel-loader",
-                },
-                exclude: /node_modules/
+                }
             },
             {
               test: /\.(png|jpg|gif)$/,
@@ -40,7 +41,7 @@ module.exports = {
                 {
                   loader: 'url-loader',
                   options: {
-                    limit: 8192
+                    limit: 8*1024
                   }
                 }
               ]
@@ -49,9 +50,6 @@ module.exports = {
                 test: /\.css$/,
                 include: /src/,
                 use: [
-
-                  'style-loader',
-
                   MiniCssExtractPlugin.loader,
 
                   {
@@ -76,13 +74,12 @@ module.exports = {
             }
         ]
     },
-    stats: { children: false },
     plugins: [
-         new webpack.DefinePlugin({
+         new Webpack.DefinePlugin({
             PRODUCTION: JSON.stringify(true),
             ENV: JSON.stringify(process.env.NODE_ENV)
          }),
-         new HtmlWebpackPlugin({ // 打包输出HTML
+         new HtmlWebpackPlugin({
             title: 'Hello World',
             template: "./public/index.html",
             filename: "./index.html",
@@ -90,27 +87,35 @@ module.exports = {
          }),
          new AntdDayjsWebpackPlugin(),
          new CleanWebpackPlugin(),
-         new CompressionPlugin(),
          new MiniCssExtractPlugin({
             filename: 'index[hash].css',
             chunkFilename: 'index[id].css',
             ignoreOrder: false
-          })
+          }),
+          new Webpack.DllReferencePlugin({
+            manifest:resolve(__dirname,'../dll/manifest.json')
+          }),
+          new AddAssetHtmlWebpackkPlugin([
+            {filepath:resolve(__dirname,'../dll/vendors.js')},
+            {filepath:resolve(__dirname,'../dll/react.js')},
+            {filepath:resolve(__dirname,'../dll/antd.js')},
+            {filepath:resolve(__dirname,'../dll/echarts.js')}
+          ])
      ],
-     //SplitChunksPlugin
      optimization: {
        splitChunks: {
          chunks: 'async',
          minSize: 30000,
          maxSize: 0,
          minChunks: 1,
-         maxAsyncRequests: 6,
-         maxInitialRequests: 4,
+         maxAsyncRequests: 5,
+         maxInitialRequests: 3,
          automaticNameDelimiter: '~',
-         automaticNameMaxLength: 30,
+         name: true,
          cacheGroups: {
-           defaultVendors: {
-             test: /[\\/]node_modules[\\/]/,
+           vendors: {
+             //test: /[\\/]node_modules[\\/]/,
+             test: /[\\/]node_modules[\\/](react|react-dom|redux)[\\/]/,
              priority: -10
            },
            default: {
