@@ -9,21 +9,19 @@ const Webpack = require('webpack');
 
 module.exports = {
     entry: {
-      vendors:['lodash','axios'],
-      react:['react','react-dom'],
-      antd:['antd'],
-      echarts:['echarts']
+      lodash:['lodash'],
+      react:['react','react-dom']
     },
     output:{
-        filename:'[name].js',
-        path:resolve(__dirname,'../dll'),
-        library:'[name][hash]'
+        filename:'dll.[name].js',
+        path:resolve(__dirname,'../build','dll'),
+        library:'[name]'
     },
     //plugins
     plugins:[
         new Webpack.DllPlugin({
-            name:'[name][hash]',
-            path:resolve(__dirname,'../dll/manifest.json'),
+            name:'[name]',
+            path:resolve(__dirname,'../build/dll/manifest.json')
         })
     ],
 

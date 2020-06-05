@@ -1,12 +1,11 @@
 const Webpack = require('webpack');
 const { resolve } = require("path");
 const { CleanWebpackPlugin }  = require('clean-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
-const AddAssetHtmlWebpackkPlugin = require('add-asset-html-webpack-plugin');
 
 const isDev = process.env.NODE_ENV === 'development'
 
@@ -83,35 +82,28 @@ module.exports = {
     },
     plugins: [
       new Webpack.DefinePlugin({
-         PRODUCTION: JSON.stringify(true),
-         VERSION: JSON.stringify('5fa3b9')
+         ENV: JSON.stringify(process.env.NODE_ENV)
       }),
       new HtmlWebpackPlugin({
-        title: 'Hello',
-        template: "./public/index.html",
-        filename: "./index.html",
+        title: 'TMP',
+        template:'./public/index.html',
+        filename: "index.html",
         favicon: "./public/favicon.ico"
       }),
       new AntdDayjsWebpackPlugin(),
-      new CleanWebpackPlugin(),
+      new CleanWebpackPlugin({
+        cleanOnceBeforeBuildPatterns: ['**/*', '!dll', '!dll/**'] //不删除dll目录
+      }),
       new Webpack.HotModuleReplacementPlugin(),
-
+      //new BundleAnalyzerPlugin(),
       new MiniCssExtractPlugin({
-        // Options similar to the same options in webpackOptions.output
-        // all options are optional
         filename: '[name].css',
         chunkFilename: '[id].css',
         ignoreOrder: false
       }),
       new Webpack.DllReferencePlugin({
-        manifest:resolve(__dirname,'../dll/manifest.json')
-      }),
-      new AddAssetHtmlWebpackkPlugin([
-        {filepath:resolve(__dirname,'../dll/vendors.js')},
-        {filepath:resolve(__dirname,'../dll/react.js')},
-        {filepath:resolve(__dirname,'../dll/antd.js')},
-        {filepath:resolve(__dirname,'../dll/echarts.js')}
-      ])
+        manifest:resolve(__dirname, '../build/dll', 'manifest.json')
+      })
     ],
     optimization: {
       splitChunks: {
@@ -121,13 +113,33 @@ module.exports = {
         minChunks: 1,
         maxAsyncRequests: 5,
         maxInitialRequests: 3,
-        automaticNameDelimiter: '~',
+        automaticNameDelimiter: '-',
         name: true,
         cacheGroups: {
-          vendors: {
-            test: /[\\/]node_modules[\\/]/,
-            //test: /[\\/]node_modules[\\/](react|react-dom|redux)[\\/]/,
-            priority: -10
+          vendor: {
+            //第三方依赖
+            priority: 1,
+            name: 'vendor',
+            test: /node_modules/,
+            chunks: 'initial',
+            minSize: 100,
+            minChunks: 1 //重复引入了几次
+          },
+          antd: {
+            name: "antd", // 单独将 react-lottie 拆包
+            priority: 5, // 权重需大于`vendor`
+            test: /[\\/]node_modules[\\/](antd)[\\/]/,
+            chunks: 'initial',
+            minSize: 100,
+            minChunks: 1 //重复引入了几次
+          },
+          echarts: {
+            name: "echarts", //单独将echarts拆包
+            priority: 5, // 权重需大于`vendor`
+            test: /[\\/]node_modules[\\/](echarts)[\\/]/,
+            chunks: 'initial',
+            minSize: 100,
+            minChunks: 1 //重复引入了几次
           },
           default: {
             minChunks: 2,
