@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+ import React, { Component } from 'react';
 //异步加载组件
 import asyncComponent from '../util/loadable';
 const Counter = asyncComponent(() => import('../component/counter'));

@@ -9,7 +9,6 @@ const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
 
 const isDev = process.env.NODE_ENV === 'development'
 
-
 module.exports = {
   mode: "development",
   devtool: 'eval-source-map',
@@ -27,9 +26,7 @@ module.exports = {
             {
                 test: /(\.jsx|\.js)$/,
                 include: resolve(__dirname, '../src'),
-                use: {
-                    loader: "babel-loader",
-                }
+                use: ['cache-loader', 'babel-loader']
             },
             {
               test: /\.(png|jpg|gif)$/,
