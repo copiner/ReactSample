@@ -5,7 +5,6 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
 
 const isDev = process.env.NODE_ENV === 'development'
 
@@ -87,12 +86,11 @@ module.exports = {
         filename: "index.html",
         favicon: "./public/favicon.ico"
       }),
-      new AntdDayjsWebpackPlugin(),
       new CleanWebpackPlugin({
         cleanOnceBeforeBuildPatterns: ['**/*', '!dll', '!dll/**'] //不删除dll目录
       }),
       new Webpack.HotModuleReplacementPlugin(),
-      //new BundleAnalyzerPlugin(),
+      // new BundleAnalyzerPlugin(),
       new MiniCssExtractPlugin({
         filename: '[name].css',
         chunkFilename: '[id].css',
@@ -123,20 +121,28 @@ module.exports = {
             minChunks: 1 //重复引入了几次
           },
           antd: {
-            name: "antd", // 单独将 react-lottie 拆包
+            name: "antd", // 单独将antd拆包
             priority: 5, // 权重需大于`vendor`
             test: /[\\/]node_modules[\\/](antd)[\\/]/,
             chunks: 'initial',
             minSize: 100,
-            minChunks: 1 //重复引入了几次
+            minChunks: 1
           },
           echarts: {
             name: "echarts", //单独将echarts拆包
             priority: 5, // 权重需大于`vendor`
             test: /[\\/]node_modules[\\/](echarts)[\\/]/,
+            // chunks: 'initial',
+            minSize: 100,
+            minChunks: 1
+          },
+          moment: {
+            name: "moment", //单独将echarts拆包
+            priority: 5, // 权重需大于`vendor`
+            test: /[\\/]node_modules[\\/](moment)[\\/]/,
             chunks: 'initial',
             minSize: 100,
-            minChunks: 1 //重复引入了几次
+            minChunks: 1
           },
           default: {
             minChunks: 2,

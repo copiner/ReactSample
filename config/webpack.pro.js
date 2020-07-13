@@ -5,7 +5,6 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
 //console.log(process.NODE_ENV);
 
 module.exports = {
@@ -79,13 +78,12 @@ module.exports = {
             ENV: JSON.stringify(process.env.NODE_ENV)
          }),
          new HtmlWebpackPlugin({
-            title: 'TMP',
+            title: 'TEMPLATE',
             template:'./public/index.html',
             filename: "index.html",
             favicon: "./public/favicon.ico"
          }),
          new BundleAnalyzerPlugin(),
-         new AntdDayjsWebpackPlugin(),
          new CleanWebpackPlugin({
            cleanOnceBeforeBuildPatterns: ['**/*', '!dll', '!dll/**'] //不删除dll目录
          }),
@@ -130,6 +128,14 @@ module.exports = {
              name: "echarts", //单独将echarts拆包
              priority: 5, // 权重需大于`vendor`
              test: /[\\/]node_modules[\\/](echarts)[\\/]/,
+             // chunks: 'initial',
+             minSize: 100,
+             minChunks: 1
+           },
+           moment: {
+             name: "moment", //单独将echarts拆包
+             priority: 5, // 权重需大于`vendor`
+             test: /[\\/]node_modules[\\/](moment)[\\/]/,
              chunks: 'initial',
              minSize: 100,
              minChunks: 1
