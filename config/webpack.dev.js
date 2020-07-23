@@ -31,12 +31,12 @@ module.exports = {
               test: /\.(png|jpg|gif)$/,
               exclude: /node_modules/,
               use: [
-                {
-                  loader: 'file-loader',
-                  options: {
-                    name: '[path][name].[ext]'
-                  }
-                },
+                // {
+                //   loader: 'file-loader',
+                //   options: {
+                //     name: '[path][name].[ext]'
+                //   }
+                // },
                 {
                   loader: 'url-loader',
                   options: {
@@ -81,7 +81,7 @@ module.exports = {
          ENV: JSON.stringify(process.env.NODE_ENV)
       }),
       new HtmlWebpackPlugin({
-        title: 'TMP',
+        title: 'Hello World',
         template:'./public/index.html',
         filename: "index.html",
         favicon: "./public/favicon.ico"
@@ -90,7 +90,6 @@ module.exports = {
         cleanOnceBeforeBuildPatterns: ['**/*', '!dll', '!dll/**'] //不删除dll目录
       }),
       new Webpack.HotModuleReplacementPlugin(),
-      // new BundleAnalyzerPlugin(),
       new MiniCssExtractPlugin({
         filename: '[name].css',
         chunkFilename: '[id].css',
@@ -98,7 +97,8 @@ module.exports = {
       }),
       new Webpack.DllReferencePlugin({
         manifest:resolve(__dirname, '../build/dll', 'manifest.json')
-      })
+      }),
+      //new BundleAnalyzerPlugin()
     ],
     optimization: {
       splitChunks: {
@@ -132,7 +132,7 @@ module.exports = {
             name: "echarts", //单独将echarts拆包
             priority: 5, // 权重需大于`vendor`
             test: /[\\/]node_modules[\\/](echarts)[\\/]/,
-            // chunks: 'initial',
+            chunks: 'initial',
             minSize: 100,
             minChunks: 1
           },

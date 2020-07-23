@@ -5,7 +5,8 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-//console.log(process.NODE_ENV);
+
+const isDev = process.env.NODE_ENV === 'development'
 
 module.exports = {
   mode: "production",
@@ -31,12 +32,12 @@ module.exports = {
             {
               test: /\.(png|jpg|gif)$/,
               use: [
-                {
-                  loader: 'file-loader',
-                  options: {
-                    name: '[path][name].[ext]'
-                  }
-                },
+                // {
+                //   loader: 'file-loader',
+                //   options: {
+                //     name: '[path][name].[ext]'
+                //   }
+                // },
                 {
                   loader: 'url-loader',
                   options: {
@@ -78,23 +79,23 @@ module.exports = {
             ENV: JSON.stringify(process.env.NODE_ENV)
          }),
          new HtmlWebpackPlugin({
-            title: 'TEMPLATE',
+            title: 'Hello World',
             template:'./public/index.html',
             filename: "index.html",
             favicon: "./public/favicon.ico"
          }),
-         new BundleAnalyzerPlugin(),
          new CleanWebpackPlugin({
            cleanOnceBeforeBuildPatterns: ['**/*', '!dll', '!dll/**'] //不删除dll目录
          }),
          new MiniCssExtractPlugin({
-            filename: 'index[hash].css',
-            chunkFilename: 'index[id].css',
+            filename: '[name]-[hash].css',
+            chunkFilename: '[id]-[hash].css',
             ignoreOrder: false
           }),
           new Webpack.DllReferencePlugin({
             manifest:resolve(__dirname, '../build/dll', 'manifest.json')
-          })
+          }),
+          new BundleAnalyzerPlugin()//打包调整更新优化
      ],
      optimization: {
        splitChunks: {

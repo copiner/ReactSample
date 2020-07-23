@@ -2,7 +2,6 @@
 dll 单独打包
 webpack.DllPlugin
 webpack.DllReferencePlugin
-add-asset-html-webpack-plugin
 */
 const { resolve } = require('path');
 const Webpack = require('webpack');

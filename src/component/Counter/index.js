@@ -13,6 +13,7 @@ class Counter extends Component{
     this.setState({clickCount: this.state.clickCount + 1});
   }
   render () {
+    console.log(this.props)
     return (<h2 onClick={this.handleClick}>Click me: {this.state.clickCount}</h2>);
   }
 }

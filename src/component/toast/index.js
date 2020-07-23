@@ -1,6 +1,3 @@
-/**
-* Toast
-*/
 import React, { Component } from 'react'
 import { v4 } from 'uuid'
 
@@ -90,9 +87,10 @@ class Toast extends Component {
 
   render() {
     return (
-      <div>
+      <>
+        ABC
         { this.renderToasts() }
-      </div>
+      </>
     )
   }
 }

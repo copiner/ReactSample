@@ -4,7 +4,7 @@ import LInput from './input'
 const HocInput = WrappedComponent => {
   return class extends Component {
 
-    handleClick =() =>{
+    handleClick = () =>{
       console.log('click');
     }
 
@@ -12,7 +12,7 @@ const HocInput = WrappedComponent => {
       return (
           <WrappedComponent
             {...this.props}
-            handleClick={this.handleClick}
+            onFocus={this.handleClick}
           />
       )
     }

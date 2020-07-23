@@ -11,11 +11,10 @@ class Hoc extends Component {
     }
 
     render() {
-      //console.log(this.props);
+        //console.log(this.props);
         return (
           <div>
             <HocInput name="wdaonngg" />
-            <HocInput name="instream" />
           </div>
         );
     }

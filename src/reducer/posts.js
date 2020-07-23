@@ -1,21 +1,13 @@
 import {
     GET_POSTS_SUCCESS,
     GET_POSTS_FAIL
-} from '../actions';
+} from '../actions/posts';
 
-const initState = {
-    fetched: false,
-    posts: [{
-        key: '1',
-        id: '1',
-        title: 'test'
-    }],
-	  error: null
-}
-const postReducer = (state = initState, action) => {
+
+const postReducer = (state = {loading:false,data:[],text:'posts',}, action) => {
     switch(action.type) {
         case GET_POSTS_SUCCESS:
-            return {...state, fetched: true, posts: action.posts}
+            return {...state, fetched: true, data: action.posts}
         case GET_POSTS_FAIL:
             return {...state, error: action.error}
     }

@@ -5,24 +5,25 @@ import logger from 'redux-logger';
 import appReducer from '../reducer';
 import rootSaga from '../sagas';
 
-const sagaMiddleware = createSagaMiddleware();
-const middlewares = [ sagaMiddleware, logger ];
 
 export default function configureStore(initialState={}) {
 
-    const store = createStore(
-      appReducer,
-      initialState,
-      applyMiddleware(...middlewares));
+    const sagaMiddleware = createSagaMiddleware();
+    const middlewares = [ sagaMiddleware ];
 
-      sagaMiddleware.run(rootSaga);
+    const middlewareEnhancer = applyMiddleware(...middlewares);
 
-    if (module.hot) {
-        module.hot.accept('../reducer', () => {
-            const nextRootReducer = require('../reducer');
-            store.replaceReducer(nextRootReducer);
-        });
-    }
+    // const enhancers = [middlewareEnhancer, monitorReducersEnhancer]
+    // const composedEnhancers = compose(...enhancers)
+    // const store = createStore(rootReducer, preloadedState, composedEnhancers)
+
+    const store = createStore(appReducer,initialState,middlewareEnhancer);
+
+    sagaMiddleware.run(rootSaga);
+
+    if (process.env.NODE_ENV !== 'production' && module.hot) {
+       module.hot.accept('../reducer', () => store.replaceReducer(rootReducer))
+     }
 
     return store;
 }

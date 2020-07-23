@@ -1,32 +1,32 @@
 module.exports = {
-  presets:[
+  presets: [
     ["@babel/preset-env",{
-       targets: {
-           esmodules: true
-       },
-       corejs: {
-         version: 3,
-         proposals: true
-       },
-       useBuiltIns:"usage"
+        targets: {
+            browsers: ["defaults", "not ie 11"]
+        },
+        corejs: {
+          version: 3,
+          proposals: true
+        },
+        useBuiltIns:"usage"
     }],
     ["@babel/preset-react",{
          useBuiltIns:true
     }]
   ],
   plugins : [
-     ["@babel/plugin-transform-react-jsx", {
-       useBuiltIns:true
+     ["@babel/plugin-proposal-class-properties", {
+       loose: true
      }],
-     ["@babel/plugin-transform-runtime",{
-        corejs:3
+     ["@babel/plugin-transform-react-jsx", {
+        useBuiltIns:true
       }],
-     '@babel/plugin-proposal-class-properties',
-     "@babel/plugin-syntax-dynamic-import",
-     ["import", {
+     ["@babel/plugin-transform-runtime",{
+       corejs:3
+     }],
+     ["babel-plugin-import", {
        libraryName: "antd",
-       libraryDirectory: "es",
-       style: "css"
+       style: "css",   // or 'css'
      }]
   ]
-};
+}

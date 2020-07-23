@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { DatePicker } from 'antd';
 class LInput extends React.Component {
   constructor(props) {
     super(props);
@@ -9,10 +9,17 @@ class LInput extends React.Component {
     console.log(e.target.value)
   }
 
+  onChange = (date, dateString) => {
+    console.log(date, dateString);
+  }
+
   render() {
 
     return (
-      <input onChange={this.handleInput} />
+      <>
+        <DatePicker onChange={this.onChange} />
+        <input onChange={this.handleInput} />
+      </>
     )
   }
 }

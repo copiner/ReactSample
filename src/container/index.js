@@ -1,90 +1,127 @@
 import React, { Component } from 'react';
-import { Switch, Route, Redirect,Link } from 'react-router-dom';
+import { Switch, Route, Redirect, Link, useRouteMatch } from 'react-router-dom';
 import { connect } from 'react-redux';
-
-import { Layout, Menu, Breadcrumb } from 'antd';
-const { SubMenu } = Menu;
-const { Content } = Layout;
+import { routesList } from '../routes/index';
 
 import PrivateRoute from '../routes/privateRoute';
-
-import AppSider from '../component/sider';
-import AppHeader from '../component/header';
 import Toast from '../component/toast';
+/*Layout s */
+import { Layout, Menu } from 'antd';
+import {
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
+  UserOutlined,
+  VideoCameraOutlined,
+  UploadOutlined,
+  MailOutlined
+} from '@ant-design/icons';
 
-import { dRoutes } from '../routes/bus';
-import { cRoutes } from '../routes/user';
-import { aRoutes } from '../routes/home';
-import { bRoutes } from '../routes/form';
+const { Header, Sider, Content } = Layout;
+const { SubMenu } = Menu;
+
+const iconEnum = {
+  '1':<MailOutlined />,
+  '2':<UploadOutlined />,
+  '3':<VideoCameraOutlined />,
+  '4':<UserOutlined />
+}
+/*Layout e */
+
+import la from './index.css'
 
 class App extends Component {
-    constructor(props) {
-        super(props);
-	       this.toast = React.createRef();
+  constructor(props) {
+    super(props);
+    this.toast = React.createRef();
+    this.state = {
+      collapsed: false,
+      current:1
+    }
+  }
+
+  handleClick = e => {
+    this.setState({
+      current: e.key,
+    });
+  };
+
+  toggle = () => {
+    this.setState({
+      collapsed: !this.state.collapsed,
+    });
+  };
+
+  render() {
+
+    let trigger;
+
+    if(this.state.collapsed){
+     trigger = <MenuUnfoldOutlined className={la.trigger} onClick={this.toggle} />
+    } else {
+     trigger = <MenuFoldOutlined className={la.trigger} onClick={this.toggle}/>
     }
 
-    componentDidMount(){
-      window.Toast = this.toast.current;
-    }
+    return (
+      <>
+        <Layout>
+         <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
+          <div className={la.logo} />
+          <Menu theme="dark" mode="inline" defaultOpenKeys={['0','1','2']}  onClick={this.handleClick} >
+             {
+                routesList.map((item, i) => {
+                    return item.routes.length > 0 ? (
+                        <SubMenu key={i} icon={iconEnum[i+1]} title={<span>{item.title}</span>}>
+                          {
+                            item.routes.map((link,idx)=>{
+                              return (
+                                <Menu.Item key={idx+''+i}><Link to={link.path}>{link.title}</Link></Menu.Item>
+                              )
+                            })
+                          }
+                        </SubMenu>
+                      ) : ""
+                  })
+              }
+          </Menu>
+         </Sider>
+         <Layout className={la.layout}>
+           <Header className={la.layoutBg}>
+            {trigger}
+            <Toast ref={this.toast} />
+           </Header>
+           <Content className={la.layoutContent}>
+            <Switch>
+              {
+                routesList.map((item, i) => {
+                    return item.routes.length > 0 ? (
+                        item.routes.map((link,index)=>{
+                          return (
+                              <PrivateRoute
+                                key={i + '' + index}
+                                path={link.path}
+                                exact={link.exact}
+                                component={link.component}
+                              />
+                            )
 
-    render() {
-        const { fetchParams } = this.props;
-        let allRoutes = [...aRoutes, ...bRoutes, ...cRoutes, ...dRoutes];
+                        })
+                      ) : ''
 
-        return (
-                  <Layout>
-                    <Toast ref={this.toast} />{/*弹窗*/}
-                    <AppHeader />
-                    <Layout>
-                      <AppSider aRoutes = { aRoutes } bRoutes = { bRoutes } cRoutes = { cRoutes } dRoutes = { dRoutes }/>
-                      <Layout style={{ padding: '0 24px 24px' }}>
-                        <Breadcrumb style={{ margin: '16px 0' }}>
-                          <Breadcrumb.Item>Home</Breadcrumb.Item>
-                          <Breadcrumb.Item>List</Breadcrumb.Item>
-                          <Breadcrumb.Item>App</Breadcrumb.Item>
-                        </Breadcrumb>
-                        <Content style={{ background: '#fff', padding: 16, margin: 0, minHeight: 280 }}>
-                          <Switch>
-                            {
-                              // allRoutes.map((item, index) => (
-                              //   <Route
-                              //     fetchParams={ fetchParams }
-                              //     key = {index}
-                              //     path={item.path}
-                              //     exact={item.exact}
-                              //     component={item.render}
-                              //
-                              //   />
-                              // ))
+                  })
+                }
+              <Redirect to="/login" />
+            </Switch>
+           </Content>
+         </Layout>
+       </Layout>
+     </>
+    )
+  }
 
-                              // allRoutes.map((route, index) => (
-                              //   <PrivateRoute
-                              //     fetchParams={ fetchParams }
-                              //     key={index}
-                              //     path={route.path}
-                              //     exact={route.exact}
-                              //     component={route.render}
-                              //   />
-                              // ))
+  componentDidMount(){
+    window.Toast = this.toast.current;
+  }
 
-                              allRoutes.map((route, index) => {
-                                return <PrivateRoute
-                                  fetchParams={ fetchParams }
-                                  key={index}
-                                  path={route.path}
-                                  exact={route.exact}
-                                  component={route.render}
-                                />
-                              })
-                            }
-                            <Redirect to="/" />
-                          </Switch>
-                        </Content>
-                      </Layout>
-                  </Layout>
-                </Layout>
-        );
-    }
 }
 
 const mapStateToProps  = (state) => ({
@@ -97,43 +134,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
-
-
-
-// class App extends Component {
-//     constructor(props) {
-//         super(props);
-//     }
-//
-//     render() {
-//         return (
-//               <div>
-//                   <Layout>
-//                     <AppHeader />
-//                     <Layout>
-//                       <AppSider />
-//                       <Layout style={{ padding: '0 24px 24px' }}>
-//                         <Breadcrumb style={{ margin: '16px 0' }}>
-//                           <Breadcrumb.Item>Home</Breadcrumb.Item>
-//                           <Breadcrumb.Item>List</Breadcrumb.Item>
-//                           <Breadcrumb.Item>App</Breadcrumb.Item>
-//                         </Breadcrumb>
-//                         <Content style={{ background: '#fff', padding: 16, margin: 0, minHeight: 280 }}>
-//                           <Switch>
-//                               <Route path="/" exact render={() => <h1>Home Page</h1>} />
-//                               <Route path="/users" exact component={UserList}></Route>
-//                               <Route path="/posts" exact component={PostList}></Route>
-//                               <Route path="/page" exact render={() => <h1>路由测试</h1>}></Route>
-//                               <Route path="/test" exact component={Test}></Route>
-//                               <Redirect to="/" />
-//                           </Switch>
-//                         </Content>
-//                       </Layout>
-//                   </Layout>
-//                 </Layout>
-//               </div>
-//         );
-//     }
-// }
-
-//export default App;
+// export default App;
