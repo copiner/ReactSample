@@ -21,7 +21,7 @@ import {
 function* showPostsAsync() {
     try {
         const posts = yield select(Selectors.getPosts);
-        console.log(posts)
+        // console.log(posts)
         let user = {userId:2, name:"wrq"};
         const rst = yield call(PostServer.getPosts, user);
 

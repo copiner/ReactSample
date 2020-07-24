@@ -1,21 +1,32 @@
 import React, { Component } from 'react';
 
-class Counter extends Component{
+
+class FileInput extends React.Component {
   constructor(props) {
-      super(props);
-      this.state = {clickCount: 0};
+    super(props);
+    this.fileInput = React.createRef();
   }
 
-  handleClick = () => {
-    // this.setState(function(state) {
-    //   return {clickCount: state.clickCount + 1};
-    // });
-    this.setState({clickCount: this.state.clickCount + 1});
+  handleSubmit = (event) => {
+
+    event.preventDefault();
+    console.log(`Selected file - ${this.fileInput.current.files[0].name}`)
+
   }
-  render () {
+
+  render() {
     console.log(this.props)
-    return (<h2 onClick={this.handleClick}>Click me: {this.state.clickCount}</h2>);
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Upload file:
+          <input type="file" ref={this.fileInput} />
+        </label>
+        <button type="submit">Submit</button>
+      </form>
+    );
   }
 }
 
-export default Counter;
+
+export default FileInput;

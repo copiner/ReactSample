@@ -7,12 +7,20 @@ import { Spin } from 'antd';
 // const PButton = loadable(() => import("../component/ref"), {fallback: <Spin size="large" />});
 // const ForRef = loadable(() => import("../component/ref/app"), {fallback: <Spin size="large" />});
 
-const Home = () =>{ return  (<h1>Home</h1>) };
 
 // const Postcss = loadable(() => import(/* webpackChunkName: "postcss" */'../component/postcss'))
 // const BarChart = loadable(() => import(/* webpackChunkName: "bar" */'../component/chart/bar'))
 // const Counter = loadable(() => import(/* webpackChunkName: "counter" */'../component/counter'))
 
+const Home = loadable((props) => import(/* webpackChunkName: "counter" */'../component/home'))
+
+function Bus() {
+  return <h3>Bus</h3>;
+}
+
+function Cart() {
+  return <h3>Cart</h3>;
+}
 
 
 export const routesList = [
@@ -24,12 +32,23 @@ export const routesList = [
     routes:[
       {
         title:"售卡充值",
-        path: '/',
-        exact: true,
+        path: '/sail/:name',
         extra: {
           ant: true
         },
-        component: Home
+        component: Home,
+        routes: [
+          {
+            title:"业务办理",
+            path: "/sail/bus",
+            component: Bus
+          },
+          {
+            title:"信息上传",
+            path: "/sail/cart",
+            component: Cart
+          }
+        ]
       },
       {
         title:"柱状显示",
@@ -71,6 +90,28 @@ export const routesList = [
       path: '/pbutton',
       exact: true,
       component: loadable(() => import(/* webpackChunkName: "ref" */"../component/ref"))
+    },{
+      title:"交易报表",
+      path: '/portal',
+      exact: true,
+      component: loadable(() => import(/* webpackChunkName: "portal" */"../component/portal"))
+    }
+  ]
+},
+{
+  title:'数据管理',
+  path:'/data',
+  routes:[
+    {
+      title:"统计数据",
+      path: '/user',
+      exact: true,
+      component: loadable(() => import(/* webpackChunkName: "counter" */'../container/user'))
+    },{
+      title:"数据交易",
+      path: '/posts',
+      exact: true,
+      component: loadable(() => import("../container/post"))
     }
   ]
 },
@@ -88,6 +129,11 @@ export const routesList = [
       path: '/posts',
       exact: true,
       component: loadable(() => import("../container/post"))
+    },{
+      title:"退款交易",
+      path: '/props',
+      exact: true,
+      component: loadable(() => import("../component/props"))
     }
   ]
 }

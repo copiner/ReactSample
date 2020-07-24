@@ -38,12 +38,10 @@ const columns = [
 ];
 
 const GoodsTable = (props) => {
-  console.log(props)
+  // console.log(props)
 
   const [pageSize, setPageSize] = useState(10);
   const [pageNo, setPageNo] = useState(1);
-  // const [loading, setLoading] = useState(false);
-  const [response, setResponse] = useState(null);
 
   useEffect(() => {
     props.userAct.getUsers()

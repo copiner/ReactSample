@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, Redirect, Link, useRouteMatch } from 'react-router-dom';
+import { Switch, Route, Redirect, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { routesList } from '../routes/index';
 
@@ -93,14 +93,16 @@ class App extends Component {
             <Switch>
               {
                 routesList.map((item, i) => {
+
                     return item.routes.length > 0 ? (
-                        item.routes.map((link,index)=>{
+                        item.routes.map((route,index)=>{
                           return (
                               <PrivateRoute
                                 key={i + '' + index}
-                                path={link.path}
-                                exact={link.exact}
-                                component={link.component}
+                                path={route.path}
+                                exact={route.exact}
+                                component={route.component}
+                                routes = {route.routes}
                               />
                             )
 
