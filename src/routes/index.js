@@ -99,23 +99,6 @@ export const routesList = [
   ]
 },
 {
-  title:'数据管理',
-  path:'/data',
-  routes:[
-    {
-      title:"统计数据",
-      path: '/user',
-      exact: true,
-      component: loadable(() => import(/* webpackChunkName: "counter" */'../container/user'))
-    },{
-      title:"数据交易",
-      path: '/posts',
-      exact: true,
-      component: loadable(() => import("../container/post"))
-    }
-  ]
-},
-{
   title:'权限管理',
   path:'/auth',
   routes:[
@@ -123,12 +106,12 @@ export const routesList = [
       title:"统计报表",
       path: '/user',
       exact: true,
-      component: loadable(() => import(/* webpackChunkName: "counter" */'../container/user'))
+      component: loadable(() => import(/* webpackChunkName: "user" */'../container/user'))
     },{
       title:"交易退款",
       path: '/posts',
       exact: true,
-      component: loadable(() => import("../container/post"))
+      component: loadable(() => import(/* webpackChunkName: "post" */"../container/post"))
     },{
       title:"退款交易",
       path: '/props',
