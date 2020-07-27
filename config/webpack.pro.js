@@ -66,7 +66,7 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                include: /[\\/]node_modules[\\/](antd)[\\/]/,
+                include: /[\\/]node_modules[\\/](antd|cropperjs)[\\/]/,
                 use: [
                     "style-loader",
                     'css-loader'

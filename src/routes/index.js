@@ -24,7 +24,6 @@ function Cart() {
 
 
 export const routesList = [
-
 {
     title:"业务办理",
     path: '/business',
@@ -99,6 +98,17 @@ export const routesList = [
   ]
 },
 {
+  title:'用户管理',
+  routes:[
+    {
+      title:"图片上传",
+      path: '/cropper',
+      exact: true,
+      component: loadable(() => import(/* webpackChunkName: "cropper" */'../component/cropper'))
+    }
+  ]
+},
+{
   title:'权限管理',
   path:'/auth',
   routes:[
@@ -116,7 +126,7 @@ export const routesList = [
       title:"退款交易",
       path: '/props',
       exact: true,
-      component: loadable(() => import("../component/props"))
+      component: loadable(() => import(/* webpackChunkName: "props" */"../component/props"))
     }
   ]
 }
