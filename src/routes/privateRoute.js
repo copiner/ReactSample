@@ -4,8 +4,10 @@ import { Route,Redirect } from 'react-router-dom';
 import Util from '../util';
 //登陆或者权限校验控制实现方法...
 
+console.log(Util.getLin())
+
 const fakeAuth = {
-  isAuthenticated: true //Util.getLin()
+  isAuthenticated: Util.getLin()
 };
 
 const PrivateRoute = ({ component: Component, routes, ...rest }) => (
@@ -16,7 +18,8 @@ const PrivateRoute = ({ component: Component, routes, ...rest }) => (
             ) : (
               <Redirect
                 to={{
-                  pathname: "/login"
+                  pathname: "/login",
+                  state: { from: props.location }
                 }}
               />
             )

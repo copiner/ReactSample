@@ -26,7 +26,6 @@ function Cart() {
 export const routesList = [
 {
     title:"业务办理",
-    path: '/business',
     exact:true,
     routes:[
       {

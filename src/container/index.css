@@ -13,8 +13,12 @@
 
 .logo {
   height: 32px;
-  background: red;
+  line-height: 32px;
+  background: #fff;
   margin: 16px;
+  color: #000;
+  font-size: 16px;
+  text-align: center;
 }
 
 .layout{
