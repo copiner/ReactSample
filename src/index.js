@@ -3,7 +3,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
 
 import zhCN from 'antd/es/locale/zh_CN';
@@ -15,9 +15,7 @@ moment.locale('zh-cn');
 import configureStore from './store';
 const store = configureStore();
 
-
 import App from './container';
-
 
 let render = () => {
   ReactDOM.render(
@@ -28,13 +26,6 @@ let render = () => {
           </Router>
         </Provider>
       </ConfigProvider>,
-      document.getElementById('root')
-  );
-}
-
-let loginer = () => {
-  ReactDOM.render(
-      <Login />,
       document.getElementById('root')
   );
 }

@@ -9,7 +9,7 @@ export class Home extends React.Component {
 
   render() {
     const { routes, match: { params } } = this.props;
-    console.log(routes)
+
     const { name } = params;
 
     return (
@@ -21,7 +21,7 @@ export class Home extends React.Component {
              routes.map((link,idx)=>{
                return (
                  <li>
-                    <Link key={idx} to={link.path}>{link.title}</Link>
+                    <Link key={link.id} to={link.path}>{link.title}</Link>
                  </li>
                )
              })

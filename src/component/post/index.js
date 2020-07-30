@@ -8,19 +8,14 @@ class PostList extends Component {
         super(props);
     }
 
-
     static getDerivedStateFromProps(props, state) {
-
       console.log('getDerivedStateFromProps');
-
       return null;
     }
-
 
     static getDerivedStateFromError(error) {
       console.log('getDerivedStateFromError');
     }
-
 
     shouldComponentUpdate(nextProps, nextState) {
       // 组件Props或者state改变时触发，true：更新，false：不更新
@@ -30,7 +25,6 @@ class PostList extends Component {
 
     render() {
         const postsList = this.props.postsList.data;
-        console.log(postsList)
         const columns = [
           {
               title: '编号',

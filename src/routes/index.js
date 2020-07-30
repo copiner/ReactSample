@@ -1,6 +1,8 @@
 import React from 'react';
 import loadable from "@loadable/component";
+
 import { Spin } from 'antd';
+import { UserOutlined,VideoCameraOutlined,UploadOutlined,MailOutlined } from '@ant-design/icons';
 
 // const Hoc = loadable(() => import("../component/hoc"), {fallback: <Spin size="large" />});
 // const Acc = loadable(() => import("../component/account"), {fallback: <Spin size="large" />});
@@ -25,23 +27,28 @@ function Cart() {
 
 export const routesList = [
 {
+    id:'0',
     title:"业务办理",
     exact:true,
+    icon: <UserOutlined />,
     routes:[
       {
+        id:'00',
         title:"售卡充值",
-        path: '/sail/:name',
+        path: '/sail',
         extra: {
           ant: true
         },
         component: Home,
         routes: [
           {
+            id:'0000',
             title:"业务办理",
             path: "/sail/bus",
             component: Bus
           },
           {
+            id:'0001',
             title:"信息上传",
             path: "/sail/cart",
             component: Cart
@@ -49,18 +56,21 @@ export const routesList = [
         ]
       },
       {
+        id:'01',
         title:"柱状显示",
         path: '/barchart',
         exact: true,
         component: loadable(() => import(/* webpackChunkName: "bar" */'../component/chart/bar'))
       },
       {
+        id:'02',
         title:"下代样式",
         path: '/postcss',
         exact: true,
         component: loadable(() => import(/* webpackChunkName: "postcss" */'../component/postcss'))
       },
       {
+        id:'03',
         title:"统计报表",
         path: '/counter',
         exact: true,
@@ -69,26 +79,30 @@ export const routesList = [
     ]
 },
 {
+  id:'1',
   title:"交易查询",
-  path: '/report',
-  exact:true,
+  icon: <UploadOutlined />,
   routes:[
     {
+      id:'10',
       title:"交易统计",
       path: '/hoc',
       exact: true,
       component: loadable(() => import(/* webpackChunkName: "hoc" */"../component/hoc"))
     },{
+      id:'11',
       title:"交易对账",
       path: '/acc',
       exact: true,
       component: loadable(() => import(/* webpackChunkName: "account" */"../component/account"))
     },{
+      id:'12',
       title:"交易按钮",
       path: '/pbutton',
       exact: true,
       component: loadable(() => import(/* webpackChunkName: "ref" */"../component/ref"))
     },{
+      id:'13',
       title:"交易报表",
       path: '/portal',
       exact: true,
@@ -97,9 +111,12 @@ export const routesList = [
   ]
 },
 {
+  id:'2',
   title:'用户管理',
+  icon: <MailOutlined />,
   routes:[
     {
+      id:'20',
       title:"图片上传",
       path: '/cropper',
       exact: true,
@@ -108,20 +125,24 @@ export const routesList = [
   ]
 },
 {
+  id:'3',
   title:'权限管理',
-  path:'/auth',
+  icon: <VideoCameraOutlined />,
   routes:[
     {
+      id:'30',
       title:"统计报表",
       path: '/user',
       exact: true,
       component: loadable(() => import(/* webpackChunkName: "user" */'../container/user'))
     },{
+      id:'31',
       title:"交易退款",
       path: '/posts',
       exact: true,
       component: loadable(() => import(/* webpackChunkName: "post" */"../container/post"))
     },{
+      id:'32',
       title:"退款交易",
       path: '/props',
       exact: true,
