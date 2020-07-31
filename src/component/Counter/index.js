@@ -1,32 +1,25 @@
-import React, { Component } from 'react';
+import React from "react";
+import { useSetCount } from './useCount';
 
+function Counter(props) {
+  const count = useSetCount(1, 1);
 
-class FileInput extends React.Component {
-  constructor(props) {
-    super(props);
-    this.fileInput = React.createRef();
-  }
-
-  handleSubmit = (event) => {
-
-    event.preventDefault();
-    console.log(`Selected file - ${this.fileInput.current.files[0].name}`)
-
-  }
-
-  render() {
-    console.log(this.props)
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Upload file:
-          <input type="file" ref={this.fileInput} />
-        </label>
-        <button type="submit">Submit</button>
-      </form>
-    );
-  }
+  return (
+    <div>
+      <p>count is {count}</p>
+    </div>
+  );
 }
 
+export default Counter
 
-export default FileInput;
+
+// function Counter(props) {
+//   const count = useSetCount(10, 10);
+//
+//   return (
+//     <div>
+//       <p>count is {count}</p>
+//     </div>
+//   );
+// }

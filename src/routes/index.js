@@ -9,7 +9,6 @@ import { UserOutlined,VideoCameraOutlined,UploadOutlined,MailOutlined } from '@a
 // const PButton = loadable(() => import("../component/ref"), {fallback: <Spin size="large" />});
 // const ForRef = loadable(() => import("../component/ref/app"), {fallback: <Spin size="large" />});
 
-
 // const Postcss = loadable(() => import(/* webpackChunkName: "postcss" */'../component/postcss'))
 // const BarChart = loadable(() => import(/* webpackChunkName: "bar" */'../component/chart/bar'))
 // const Counter = loadable(() => import(/* webpackChunkName: "counter" */'../component/counter'))
@@ -45,12 +44,14 @@ export const routesList = [
             id:'0000',
             title:"业务办理",
             path: "/sail/bus",
+            type: "btn",
             component: Bus
           },
           {
             id:'0001',
             title:"信息上传",
             path: "/sail/cart",
+            type: "btn",
             component: Cart
           }
         ]
@@ -75,6 +76,13 @@ export const routesList = [
         path: '/counter',
         exact: true,
         component: loadable(() => import(/* webpackChunkName: "counter" */'../component/counter'))
+      },
+      {
+        id:'04',
+        title:"文件上传",
+        path: '/file',
+        exact: true,
+        component: loadable(() => import(/* webpackChunkName: "file" */'../component/file'))
       }
     ]
 },
@@ -121,7 +129,19 @@ export const routesList = [
       path: '/cropper',
       exact: true,
       component: loadable(() => import(/* webpackChunkName: "cropper" */'../component/cropper'))
-    }
+    }, {
+      id:'21',
+      title:"图片登陆",
+      path: '/code',
+      exact: true,
+      component: loadable(() => import(/* webpackChunkName: "code" */'../component/qrcode'))
+    },{
+      id:'22',
+      title:"弹窗显示",
+      path: '/modal',
+      exact: true,
+      component: loadable(() => import(/* webpackChunkName: "modal" */'../component/modal'))
+    },
   ]
 },
 {

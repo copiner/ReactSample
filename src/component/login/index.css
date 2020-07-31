@@ -1,13 +1,27 @@
 
-.login{
-  width: 360px;
-  height: 600px;
+.loginMain{
+  height: 680px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  margin: 0 auto;
-  text-align: center;
-  padding-top: 72px;
+.loginCode, .loginAccount{
+  width: 360px;
+  height: 400px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+  border: 1px solid #ccc;
+
+}
+
+.loginAccount{
 
   & p{
-    margin-top: 36px;
+    width: 300px;
+    margin-top: 32px;
   }
 }

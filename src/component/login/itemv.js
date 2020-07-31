@@ -1,16 +1,16 @@
 /*
-  8-20位数字与字母组合输入框
+  1-20位数字与字母组合输入框
 */
 import React from 'react';
 import { Input, message } from 'antd';
 
-function PasswordInput(props) {
-
-  const passwordv = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,20}$/;
+function UserInput(props) {
+  //console.log(props)
+  const userv = /^[0-9A-Za-z]{1,20}$/;
 
   const validateField = e => {
-    if(!passwordv.test(props.value)){
-      message.warning('密码要求8-20位数字与字母组合');
+    if(!userv.test(props.value)){
+      message.warning('用户名要求数字字母不能超过位20位');
       props.clear(e);
     }
   };
@@ -18,7 +18,7 @@ function PasswordInput(props) {
 
   return (
     <>
-      <Input.Password
+      <Input
         prefix={ props.prefix }
         placeholder = { props.placeholder }
         name={ props.name }
@@ -30,4 +30,4 @@ function PasswordInput(props) {
   );
 }
 
-export default PasswordInput;
+export default UserInput;

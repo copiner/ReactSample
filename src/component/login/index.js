@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { Route, useHistory, useLocation } from 'react-router-dom';
-import { Input, Button} from 'antd';
+import { Input, Button, Tabs, message} from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+
+import QRCode from 'qrcode.react';
+import MD5 from 'crypto-js/md5'
+
+import UserInput from './itemv'
+import PasswordInput from './item'
 
 import stl from './index.css'
 
@@ -18,8 +24,13 @@ function LoginForm(props) {
 
   const printValues = e => {
     e.preventDefault();
-    //console.log(login.username, login.password);
-    props.loginSt(login)
+    console.log(MD5("abc").toString());
+    if(login.username && login.password){
+      props.loginSt(login)
+    } else {
+      message.info('请输入用户名和密码！');
+    }
+
   };
 
   const updateField = e => {
@@ -29,24 +40,52 @@ function LoginForm(props) {
     });
   };
 
+  const emptyField = e => {
+    setLogin({
+      ...login,
+      [e.target.name]: ''
+    });
+  };
+
+  const tabkey = (key) => {
+    console.log(key);
+    //TODO 轮询，查看登陆状态
+  }
+
   return (
-    <div className={stl.login}>
-      <h1>用户登陆</h1>
-      <p>
-        <Input placeholder="用户名" prefix={<UserOutlined />} value={login.username} name="username" onChange={updateField} />
-      </p>
-      <p>
-        <Input.Password
-        prefix={<LockOutlined />}
-        placeholder="密码"
-        value={login.password}
-        name="password"
-        onChange={updateField}
-        />
-      </p>
-      <p>
-        <Button type="primary" block onClick={printValues} >Submit</Button>
-      </p>
+    <div className={stl.loginMain}>
+      <Tabs defaultActiveKey="1" onChange={tabkey}>
+        <Tabs.TabPane tab="账密登陆" key="1">
+          <div className={stl.loginAccount}>
+            <p>
+              <UserInput
+                prefix={<UserOutlined />}
+                placeholder={"用户名"}
+                value={login.username}
+                name={ "username" }
+                clear = { emptyField }
+                update={ updateField } />
+            </p>
+            <p>
+              <PasswordInput
+                prefix={<LockOutlined />}
+                placeholder={ "密码" }
+                name={ "password" }
+                value={ login.password }
+                clear = { emptyField }
+                update={ updateField }/>
+            </p>
+            <p>
+              <Button type="primary" block onClick={printValues} >Submit</Button>
+            </p>
+          </div>
+        </Tabs.TabPane>
+        <Tabs.TabPane tab="扫码登陆" key="2">
+          <div className={stl.loginCode}>
+            <QRCode size={256} value="react" />
+          </div>
+        </Tabs.TabPane>
+      </Tabs>
     </div>
   );
 }

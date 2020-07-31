@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 
 import { Layout, Menu, Dropdown } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
 
-import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
+import { MenuUnfoldOutlined, MenuFoldOutlined, UserOutlined, DownOutlined } from '@ant-design/icons';
 
 import la from './index.css'
 
@@ -35,8 +34,9 @@ class Head extends React.Component {
   };
 
   render() {
-    console.log(this.props)
+
     let { toggle, collapsed } = this.props;
+
     const menu = (
       <Menu onClick={this.handleMenuClick}>
         <Menu.Item key="1" onClick={this.correctOut}>修改密码</Menu.Item>
@@ -53,9 +53,11 @@ class Head extends React.Component {
            overlay={menu}
            onVisibleChange={this.handleVisibleChange}
            visible={this.state.visible}
+           className={la.drop}
+           arrow={true}
          >
            <a onClick={e => e.preventDefault()}>
-             用户信息<DownOutlined />
+             <UserOutlined />{' 安静 '}<DownOutlined />
            </a>
        </Dropdown>
       </Layout.Header>
