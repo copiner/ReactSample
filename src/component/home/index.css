@@ -1,0 +1,27 @@
+
+.homeDetail{
+  & button{
+    margin: 6px;
+  }
+
+  & .homeNav{
+
+  }
+
+  & .homeCont{
+    height: 520px;
+  }
+}
+
+.detailQy{
+
+  & span{
+    display: inline-block;
+    margin: 0 12px;
+  }
+
+  & .detailCont{
+    padding:  12px;
+  }
+
+}

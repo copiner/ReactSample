@@ -15,15 +15,6 @@ import { UserOutlined,VideoCameraOutlined,UploadOutlined,MailOutlined } from '@a
 
 const Home = loadable((props) => import(/* webpackChunkName: "counter" */'../component/home'))
 
-function Bus() {
-  return <h3>Bus</h3>;
-}
-
-function Cart() {
-  return <h3>Cart</h3>;
-}
-
-
 export const routesList = [
 {
     id:'0',
@@ -42,17 +33,24 @@ export const routesList = [
         routes: [
           {
             id:'0000',
-            title:"业务办理",
-            path: "/sail/bus",
+            title:"业务查询",
+            path: "/sail/detail",
             type: "btn",
-            component: Bus
+            component: loadable((props) => import(/* webpackChunkName: "open" */'../component/home/detail'))
           },
           {
             id:'0001',
-            title:"信息上传",
-            path: "/sail/cart",
+            title:"业务办理",
+            path: "/sail/deal",
             type: "btn",
-            component: Cart
+            component: loadable((props) => import(/* webpackChunkName: "open" */'../component/home/deal'))
+          },
+          {
+            id:'0002',
+            title:"业务续费",
+            path: "/sail/charge",
+            type: "btn",
+            component: loadable((props) => import(/* webpackChunkName: "charge" */'../component/home/charge'))
           }
         ]
       },

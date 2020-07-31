@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
-import { Route, useHistory, useLocation } from 'react-router-dom';
-import { Input, Button, Tabs, message} from 'antd';
+import { Input, Button, Tabs, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
 import QRCode from 'qrcode.react';
