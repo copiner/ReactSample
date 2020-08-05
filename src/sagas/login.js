@@ -13,7 +13,8 @@ import {
 
 export function* loginSaga(data) {
     try {
-        const rst = yield call(LoginServer.login);
+        console.log('------------')
+        const rst = yield call(LoginServer.login,data);
         if(rst.name){
             yield put({ type: LOGIN_SUCCESS, login: rst });
         }

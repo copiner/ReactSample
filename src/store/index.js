@@ -9,7 +9,7 @@ import rootSaga from '../sagas';
 export default function configureStore(initialState={}) {
 
     const sagaMiddleware = createSagaMiddleware();
-    const middlewares = [ sagaMiddleware ];
+    const middlewares = [ sagaMiddleware, logger ];
 
     const middlewareEnhancer = applyMiddleware(...middlewares);
 

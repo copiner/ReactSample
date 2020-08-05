@@ -13,7 +13,7 @@ import { UserOutlined,VideoCameraOutlined,UploadOutlined,MailOutlined } from '@a
 // const BarChart = loadable(() => import(/* webpackChunkName: "bar" */'../component/chart/bar'))
 // const Counter = loadable(() => import(/* webpackChunkName: "counter" */'../component/counter'))
 
-const Home = loadable((props) => import(/* webpackChunkName: "counter" */'../component/home'))
+const Home = loadable((props) => import(/* webpackChunkName: "counter" */'../container/home'))
 
 export const routesList = [
 {
@@ -24,49 +24,26 @@ export const routesList = [
     routes:[
       {
         id:'00',
-        title:"售卡充值",
+        title:"常用业务",
         path: '/sail',
         extra: {
           ant: true
         },
-        component: Home,
-        routes: [
-          {
-            id:'0000',
-            title:"业务查询",
-            path: "/sail/detail",
-            type: "btn",
-            component: loadable((props) => import(/* webpackChunkName: "open" */'../component/home/detail'))
-          },
-          {
-            id:'0001',
-            title:"业务办理",
-            path: "/sail/deal",
-            type: "btn",
-            component: loadable((props) => import(/* webpackChunkName: "open" */'../component/home/deal'))
-          },
-          {
-            id:'0002',
-            title:"业务续费",
-            path: "/sail/charge",
-            type: "btn",
-            component: loadable((props) => import(/* webpackChunkName: "charge" */'../component/home/charge'))
-          }
-        ]
+        component: Home
       },
       {
         id:'01',
-        title:"柱状显示",
-        path: '/barchart',
+        title:"白名单管理",
+        path: '/allowed',
         exact: true,
-        component: loadable(() => import(/* webpackChunkName: "bar" */'../component/chart/bar'))
+        component: loadable(() => import(/* webpackChunkName: "hoc" */"../container/allow"))
       },
       {
         id:'02',
-        title:"下代样式",
-        path: '/postcss',
+        title:"统计报表",
+        path: '/user',
         exact: true,
-        component: loadable(() => import(/* webpackChunkName: "postcss" */'../component/postcss'))
+        component: loadable(() => import(/* webpackChunkName: "user" */'../container/user'))
       },
       {
         id:'03',
@@ -94,7 +71,7 @@ export const routesList = [
       title:"交易统计",
       path: '/hoc',
       exact: true,
-      component: loadable(() => import(/* webpackChunkName: "hoc" */"../component/hoc"))
+      component: loadable(() => import(/* webpackChunkName: "bar" */'../component/chart/bar'))
     },{
       id:'11',
       title:"交易对账",
@@ -123,18 +100,12 @@ export const routesList = [
   routes:[
     {
       id:'20',
-      title:"图片上传",
-      path: '/cropper',
-      exact: true,
-      component: loadable(() => import(/* webpackChunkName: "cropper" */'../component/cropper'))
-    }, {
-      id:'21',
       title:"图片登陆",
       path: '/code',
       exact: true,
       component: loadable(() => import(/* webpackChunkName: "code" */'../component/qrcode'))
     },{
-      id:'22',
+      id:'21',
       title:"弹窗显示",
       path: '/modal',
       exact: true,
@@ -149,10 +120,10 @@ export const routesList = [
   routes:[
     {
       id:'30',
-      title:"统计报表",
-      path: '/user',
+      title:"卡类别管理",
+      path: '/postcss',
       exact: true,
-      component: loadable(() => import(/* webpackChunkName: "user" */'../container/user'))
+      component: loadable(() => import(/* webpackChunkName: "postcss" */'../component/postcss'))
     },{
       id:'31',
       title:"交易退款",

@@ -1,67 +1,124 @@
 import React, { useState } from "react";
-import { Button, message } from 'antd';
+import { Switch, Route, Link } from 'react-router-dom';
+import { Modal, Button, message } from 'antd';
 
+import loadable from "@loadable/component";
 import InfoInput from './item'
 import stl from './index.css'
 
+import { useModalVisible } from '../common/modal';
+
+const Info = loadable((props) => import(/* webpackChunkName: "info" */'./info'));
+const Deal = loadable((props) => import(/* webpackChunkName: "deal" */'./deal'));
+const Charge = loadable((props) => import(/* webpackChunkName: "charge" */'./charge'));
+const Record = loadable((props) => import(/* webpackChunkName: "record" */'./record'));
+
+
 function Detail(props) {
 
-  let initatom = { name: "",idno: "" };
+  console.log(props)
 
-  const [dtl, setDtl] = useState(initatom);
+  const { visible, hideModal, openModal } = useModalVisible();
 
-  const printValues = e => {
-    e.preventDefault();
-  };
+  const routes = [
+    {
+      id:'0001',
+      title:"业务办理",
+      path: "/sail/deal",
+      component: Deal
+    },
+    {
+      id:'0002',
+      title:"业务续费",
+      path: "/sail/charge",
+      component: Charge
+    }
+  ];
 
-  const updateField = e => {
-    setDtl({
-      ...dtl,
-      [e.target.name]: e.target.value
-    });
-  };
 
-  const emptyField = e => {
-    setDtl({
-      ...dtl,
-      [e.target.name]: ''
-    });
-  };
+  const [mol, setMol] = useState(null);
 
-  const resetField = e => {
-    setDtl(initatom);
-  };
+  const bindBound = e =>{
+    setMol(e.target.name)
+  }
+
+  const itemN = () =>{
+
+    switch (mol) {
+      case 'a':
+        //props.hAct.recordSt('ctm');
+        return <Record record={props.detail} ract={props.hAct} />;
+        break;
+      case 'b':
+        return <Charge />;
+        break;
+      case 'c':
+        return <Charge />;
+        break;
+      case 'd':
+        return <Charge />;
+        break;
+      default:
+        return null;
+    }
+
+  }
+
 
   return (
-      <div className={stl.detailQy}>
-        <span>
-          <InfoInput
-            prefix={null}
-            placeholder={"用户名"}
-            value={dtl.name}
-            name={ "name" }
-            clear = { emptyField }
-            update={ updateField } />
-        </span>
-        <span>
-          <InfoInput
-            prefix={null}
-            placeholder={"身份证"}
-            value={ dtl.idno }
-            name={ "idno" }
-            clear = { emptyField }
-            update={ updateField } />
-        </span>
-        <span>
-          <Button type="primary" size={"default"} onClick={ printValues } >查询</Button>
-        </span>
-        <span>
-          <Button onClick={resetField}>清空</Button>
-        </span>
-        <div className={stl.detailCont}>
-          查询结果
-        </div>
-      </div>
+      <>
+        <div className={stl.homeNav}>
+            {
+              routes.map((link,idx)=>{
+                return (
+                   <Link key={link.id} to={link.path}>{link.title}</Link>
+                )
+              })
+            }
+            <a name="a" onClick={ (e) => { bindBound(e);openModal(); } }>业务记录</a>
+            { true?
+              <span>
+                <a name="b" onClick={ (e) => { bindBound(e); openModal();}  }>打印卡片</a>
+                <a name="c" onClick={ (e) => { bindBound(e); openModal();}  }>绑卡</a>
+                <a name="d" onClick={ (e) => { bindBound(e); openModal();}  }>退卡</a>
+              </span>
+               : "" }
+          </div>
+          <hr />
+          <div className={ stl.homeCont }>
+            <Switch>
+              <Route path="/sail/detail">
+                <Info info={true} iAct={true}/>
+              </Route>
+              {
+                routes.map((route,index)=>{
+                  return (
+                      <Route
+                        key={index}
+                        path={route.path}
+                        exact={route.exact}
+                        render={props => (
+                          <route.component {...props}/>
+                        )}
+                      />
+                    )
+                })
+              }
+            </Switch>
+          </div>
+          {
+            /*
+              共用modal
+            */
+          }
+          <Modal
+            visible={visible}
+            width={ "618px" }
+            footer={null}
+            onCancel={hideModal} >
+            { itemN() }
+          </Modal>
+      </>
     );
 }
 

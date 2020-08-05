@@ -1,6 +1,9 @@
 /*
 服务接口
 */
+const isDev = process.env.NODE_ENV === 'development'
+console.log('isDev', isDev)
+
 const API = {
   /*
   用户登陆
@@ -22,11 +25,9 @@ const API = {
   业务办理
   */
   BUSINESS: {
-    MENUS: '/sys/user/index',
-    LOGO: {
-      FETCH: '/api/open/logo/get'
+    ALLOW: {
+      LIST:'/system/list'
     },
-    VERSION: '/version',
     DEPT: {
       LIST: '/system/list',
       SAVE: '/system/save',

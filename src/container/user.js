@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 
 import User from '../component/user';
 
-import { getUsers } from '../actions/users'
+//import { getUsers } from '../actions/users'
 
 import * as uAct from '../actions/users'
 

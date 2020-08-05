@@ -25,7 +25,7 @@ class Side extends React.Component {
     return (
         <Layout.Sider trigger={null} collapsible collapsed={collapsed}>
          <div className={la.logo} >
-           {collapsed ? "足":"杭州市足球联盟"}
+           {collapsed ? "足":"杭州市足球协会联盟"}
          </div>
          <Menu theme="dark" mode="inline" defaultOpenKeys={['0','1','2']}  onClick={this.handleClick} >
             {

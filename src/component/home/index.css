@@ -1,27 +1,109 @@
 
 .homeDetail{
-  & button{
-    margin: 6px;
-  }
 
   & .homeNav{
-
+      & a{
+        padding:6px;
+      }
   }
 
-  & .homeCont{
-    height: 520px;
-  }
+
 }
 
 .detailQy{
+  & input{
+    width: 200px;
+  }
 
-  & span{
+  & label{
+    margin-right: 12px;
+  }
+
+}
+
+.homeInfo{
+    display: flex;
+    justify-content: space-around;
+    width: 720px;
+
+    border: 1px solid #ccc;
+
+  & .info{
+    width: 480px;
+
+    padding: 12px;
+    & span{
+      display: inline-block;
+      width: 200px;
+      padding: 5px;
+    }
+  }
+
+}
+
+.pic{
+  width: 186px;
+  height: 260px;
+  margin-top: 70px;
+}
+
+.photo{
+  width: 178px;
+  margin: 0 auto;
+  height: 220px;
+  border: 1px solid #999;
+}
+
+.photoSit{
+  width: 178px;
+  text-align: center;
+}
+
+.deal{
+  display: flex;
+  justify-content:space-between;
+  width: 680px;
+  padding: 12px;
+
+}
+
+.infoDeal{
+
+  & i{
     display: inline-block;
-    margin: 0 12px;
+    width: 186px;
+    font-style: normal;
   }
 
-  & .detailCont{
-    padding:  12px;
+  & .cBtn{
+    width: 180px;
+    & button{
+      width: 360px;
+    }
   }
 
+  & .dealRemark{
+    font-size: 12px;
+    color: red;
+  }
+
+  & .selectItem{
+    width: 180px;
+    height: 30px;
+    border: 1px solid #d9d9d9;
+  }
+
+  & .selectw{
+    width: 180px;
+  }
+
+  & .iptItem{
+    display: inline-block;
+    width: 180px;
+  }
+
+}
+
+.cropModal{
+  width:720px !important;
 }

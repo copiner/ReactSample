@@ -1,0 +1,17 @@
+
+
+.copperBox{
+  width: 600px;
+  height: 400px;
+  border: 1px solid red;
+  margin: 16px auto;
+}
+
+.copperBtn{
+  width: 600px;
+  margin: 0 auto;
+  text-align: right;
+  & button{
+    margin-left: 12px;
+  }
+}

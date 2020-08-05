@@ -21,6 +21,7 @@ const fetchPosts = (params) => {
       resolve(goodsList);
     }, Mock.Random.integer(500, 1000));
   });
+  
 };
 
 export default class PostServer {
