@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { Button,Select, message } from 'antd';
 
-import ComInput from '../common/itemc'
-
+import ComInput from '../common/bipt'
+import BaseSelect from '../common/bslt'
 import stl from './index.css'
 import cropPic from './cropper.png'
+
+import CNF from '../../config'
 
 function CreateForm(props) {
 
@@ -38,8 +40,9 @@ function CreateForm(props) {
   return (
     <div className={stl.amodal}>
       <p>
-      <i>用户姓名：</i>
+      <i>姓名：</i>
       <ComInput
+        limit={ CNF.IPTLIT.namea }
         placeholder={"姓名"}
         prefix={null}
         value={correct.username}
@@ -47,8 +50,9 @@ function CreateForm(props) {
         clear = { emptyField }
         update={ updateField } />
       </p>
-      <p><i>用户姓名：</i>
+      <p><i>手机号：</i>
       <ComInput
+        limit={ CNF.IPTLIT.mobile }
         prefix={null}
         placeholder={ "手机号" }
         name={ "password" }
@@ -56,8 +60,9 @@ function CreateForm(props) {
         clear = { emptyField }
         update={updateField}/>
       </p>
-      <p><i>用户姓名：</i>
+      <p><i>证件号：</i>
       <ComInput
+        limit={ CNF.IPTLIT.namea }
         prefix={null}
         placeholder={ "证件号" }
         name={ "newpassword" }
@@ -66,12 +71,11 @@ function CreateForm(props) {
         update={ updateField }/>
       </p>
       <p><i>证件类型：</i>
-        <Select className={stl.cselect} placeholder="证件类型">
-          <Select.Option value="1">Select a person</Select.Option>
-        </Select>
+        <BaseSelect type={ CNF.DICT.tname } item={ correct } setItem={setCorrect} name={"cardtype"} />
       </p>
       <p><i>证件备注：</i>
       <ComInput
+        limit={ CNF.IPTLIT.remark }
         prefix={null}
         placeholder={ "证件备注" }
         name={ "newpassword" }
@@ -84,6 +88,7 @@ function CreateForm(props) {
       </p>
       <p><i>备注：</i>
       <ComInput
+        limit={ CNF.IPTLIT.remark }
         prefix={null}
         placeholder={ "备注" }
         name={ "newpassword" }

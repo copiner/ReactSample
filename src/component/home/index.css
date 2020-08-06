@@ -76,9 +76,9 @@
   }
 
   & .cBtn{
-    width: 180px;
+    width: 200px;
     & button{
-      width: 360px;
+      width: 386px;
     }
   }
 
@@ -88,18 +88,18 @@
   }
 
   & .selectItem{
-    width: 180px;
+    width: 200px;
     height: 30px;
     border: 1px solid #d9d9d9;
   }
 
   & .selectw{
-    width: 180px;
+    width: 200px;
   }
 
   & .iptItem{
     display: inline-block;
-    width: 180px;
+    width: 200px;
   }
 
 }

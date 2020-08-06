@@ -3,7 +3,6 @@ import { Switch, Route, Link } from 'react-router-dom';
 import { Modal, Button, message } from 'antd';
 
 import loadable from "@loadable/component";
-import InfoInput from './item'
 import stl from './index.css'
 
 import { useModalVisible } from '../common/modal';

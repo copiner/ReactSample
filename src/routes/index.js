@@ -40,24 +40,24 @@ export const routesList = [
       },
       {
         id:'02',
-        title:"统计报表",
-        path: '/user',
+        title:"卡类别管理",
+        path: '/kind',
         exact: true,
         component: loadable(() => import(/* webpackChunkName: "user" */'../container/user'))
       },
       {
         id:'03',
-        title:"统计报表",
-        path: '/counter',
-        exact: true,
-        component: loadable(() => import(/* webpackChunkName: "counter" */'../component/counter'))
-      },
-      {
-        id:'04',
         title:"文件上传",
         path: '/file',
         exact: true,
         component: loadable(() => import(/* webpackChunkName: "file" */'../component/file'))
+      },
+      {
+        id:'04',
+        title:"设备管理",
+        path: '/counter',
+        exact: true,
+        component: loadable(() => import(/* webpackChunkName: "counter" */'../component/counter'))
       }
     ]
 },

@@ -35,7 +35,11 @@ const API = {
       UPDATE: '/system/update',
       REMOVE: '/system/remove',
     }
-  }
+  },
+  /*
+  数据字典
+  */
+  DICT:"/com/initdict"
 }
 
 export default API

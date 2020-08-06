@@ -4,17 +4,15 @@ import API from './api'
 import Mock from "mockjs";
 
 const fetchGoods = (params) => {
-
+  console.log(params)
   const goodsList = Mock.mock({
-    "list|100": [
+    "list|10": [
       {
         key: "@id()",
         name: "@cname(10, 20)",
         img: "@img(64x64)",
         price: "@float(0.01, 9999.99)",
-        stock: "@integer(10, 200)",
-        createTime: "@date(yyyy-MM-dd HH:mm:ss)",
-        updateTime: "@date(yyyy-MM-dd HH:mm:ss)"
+        stock: "@integer(10, 200)"
       }
     ],
     total: 100

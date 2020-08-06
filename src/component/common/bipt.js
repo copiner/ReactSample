@@ -1,15 +1,17 @@
 /*
-  数字与字母组合输入框
+  限定性 输入框组件
 */
 import React from 'react';
 import { Input, message } from 'antd';
 
-function BaseInput(props) {
-  const infov = /^[a-zA-z\u4e00-\u9fa5]{2,30}$/;
+function ComInput(props) {
+  //console.log(props)
+
+  let { limit } = props;
 
   const validateField = e => {
-    if(!infov.test(props.value)){
-      message.warning('输入值不合法！');
+    if(!limit.reg.test(props.value)){
+      message.warning(limit.msg);
       props.clear(e);
     }
   };
@@ -26,4 +28,4 @@ function BaseInput(props) {
   );
 }
 
-export default BaseInput;
+export default ComInput;

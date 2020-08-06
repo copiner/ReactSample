@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Radio, Button,Select, Input  } from 'antd';
 
-import Mobile from '../common/itemp'
-import BaseInput from '../common/itemb'
+import ComInput from '../common/bipt'
+import BaseSelect from '../common/bslt'
 import stl from './index.css'
+import CNF from '../../config'
 
 function Deal() {
 
-  let initatom = { type:"", name: "", sex: 1, img: "" };
+  let initatom = { type:"", name: "", sex: 1, mobile:"", cardtype:"", pic: "" };
 
   const [info, setInfo] = useState(initatom);
 
@@ -31,17 +32,13 @@ function Deal() {
       <div className={stl.infoDeal}>
         <p>
           <i>证件类型：</i>
-          <select className={stl.selectItem} name="type" onChange={updateField}>
-           <option value="jack">Jack</option>
-           <option value="lucy">Lucy</option>
-           <option value="Yiminghe">yiminghe</option>
-         </select>
+          <BaseSelect type={ CNF.DICT.certtype } item={ info } setItem={setInfo} name={"type"} />
         </p>
-
         <p>
           <i>姓名：</i>
           <span className={stl.iptItem}>
-            <BaseInput
+            <ComInput
+              limit={ CNF.IPTLIT.nameb }
               prefix={null}
               placeholder={"姓名"}
               value={info.name}
@@ -61,7 +58,8 @@ function Deal() {
         <p>
           <i>手机号：</i>
           <span className={stl.iptItem}>
-            <Mobile
+            <ComInput
+              limit={ CNF.IPTLIT.mobile }
               prefix={null}
               placeholder={"手机号"}
               value={info.mobile}
@@ -73,11 +71,7 @@ function Deal() {
         <p><i></i><span className={stl.dealRemark}> {"绑定手机号可享受手机刷码入寺院"}</span></p>
         <p>
           <i>卡类型：</i>
-          <Select name="cardtype" defaultValue="lucy" className={stl.selectw} onChange={updateField}>
-           <Select.Option value="jack">Jack</Select.Option>
-           <Select.Option value="lucy">Lucy</Select.Option>
-           <Select.Option value="Yiminghe">yiminghe</Select.Option>
-         </Select>
+          <BaseSelect type={ CNF.DICT.cardtype } item={ info } setItem={setInfo} name={"cardtype"} />
         </p>
         <p>
           <i>当前有效期：</i>

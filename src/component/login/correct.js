@@ -4,9 +4,8 @@ import { Route, useHistory, useLocation } from 'react-router-dom';
 import { Button, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
-import UserInput from './itemv'
-import PasswordInput from './item'
-
+import ComInput from '../common/bipt'
+import CNF from '../../config'
 import stl from './index.css'
 
 function CorrectForm(props) {
@@ -42,7 +41,8 @@ function CorrectForm(props) {
       <div className={stl.loginAccount}>
         <h1>密码修改</h1>
         <p>
-          <UserInput
+          <ComInput
+            limit={ CNF.IPTLIT.username }
             placeholder={"用户名"}
             prefix={<UserOutlined />}
             value={correct.username}
@@ -51,7 +51,8 @@ function CorrectForm(props) {
             update={ updateField } />
         </p>
         <p>
-          <PasswordInput
+          <ComInput
+            limit={ CNF.IPTLIT.password }
             prefix={<LockOutlined />}
             placeholder={ "原密码" }
             name={ "password" }
@@ -60,7 +61,8 @@ function CorrectForm(props) {
             update={updateField}/>
         </p>
         <p>
-          <PasswordInput
+          <ComInput
+            limit={ CNF.IPTLIT.password }
             prefix={<LockOutlined />}
             placeholder={ "新密码" }
             name={ "newpassword" }

@@ -5,8 +5,8 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import QRCode from 'qrcode.react';
 import MD5 from 'crypto-js/md5'
 
-import UserInput from './itemv'
-import PasswordInput from './item'
+import ComInput from '../common/bipt'
+import CNF from '../../config'
 
 import stl from './index.css'
 
@@ -56,7 +56,8 @@ function LoginForm(props) {
         <Tabs.TabPane tab="账密登陆" key="1">
           <div className={stl.loginAccount}>
             <p>
-              <UserInput
+              <ComInput
+                limit={ CNF.IPTLIT.username }
                 prefix={<UserOutlined />}
                 placeholder={"用户名"}
                 value={login.username}
@@ -65,7 +66,8 @@ function LoginForm(props) {
                 update={ updateField } />
             </p>
             <p>
-              <PasswordInput
+              <ComInput
+                limit={ CNF.IPTLIT.password }
                 prefix={<LockOutlined />}
                 placeholder={ "密码" }
                 name={ "password" }

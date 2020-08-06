@@ -6,7 +6,8 @@ import loadable from "@loadable/component";
 
 const Detail = loadable((props) => import(/* webpackChunkName: "detail" */'./detail'));
 
-import InfoInput from './item'
+import ComInput from '../common/bipt'
+import CNF from '../../config'
 import stl from './index.css'
 
 function Home(props){
@@ -43,7 +44,8 @@ function Home(props){
       <div className={stl.detailQy}>
         <label>
           <span>IC卡面号：</span>
-          <InfoInput
+          <ComInput
+            limit={ CNF.IPTLIT.namea }
             prefix={null}
             placeholder={"IC卡面号"}
             value={dtl.cardno}
@@ -54,7 +56,8 @@ function Home(props){
         </label>
         <label>
           <span>身份证号：</span>
-          <InfoInput
+          <ComInput
+            limit={ CNF.IPTLIT.cert }
             prefix={null}
             placeholder={"身份证"}
             value={ dtl.idno }
