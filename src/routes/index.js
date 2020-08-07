@@ -43,21 +43,21 @@ export const routesList = [
         title:"卡类别管理",
         path: '/kind',
         exact: true,
-        component: loadable(() => import(/* webpackChunkName: "user" */'../container/user'))
+        component: loadable(() => import(/* webpackChunkName: "kind" */'../container/kind'))
       },
       {
         id:'03',
-        title:"文件上传",
-        path: '/file',
+        title:"球场管理",
+        path: '/temple',
         exact: true,
-        component: loadable(() => import(/* webpackChunkName: "file" */'../component/file'))
+        component: loadable(() => import(/* webpackChunkName: "file" */'../container/temple'))
       },
       {
         id:'04',
         title:"设备管理",
-        path: '/counter',
+        path: '/device',
         exact: true,
-        component: loadable(() => import(/* webpackChunkName: "counter" */'../component/counter'))
+        component: loadable(() => import(/* webpackChunkName: "counter" */'../container/device'))
       }
     ]
 },

@@ -19,3 +19,18 @@
 .baseSelect{
   width: 200px;
 }
+
+
+/*common*/
+
+.comQuery{
+  
+  & input{
+    width: 200px;
+  }
+
+  & label{
+    margin-right: 12px;
+  }
+
+}

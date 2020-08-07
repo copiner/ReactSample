@@ -73,8 +73,8 @@ function Info(props) {
             <span>{"8665956363"}</span>
           </label>
           <label>
-            <span>寺院IC卡号：</span>
-            <span>{"寺院IC卡号"}</span>
+            <span>球场IC卡号：</span>
+            <span>{"球场IC卡号"}</span>
           </label>
           <label>
             <span>办卡费用：</span>

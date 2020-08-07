@@ -13,7 +13,7 @@ function BaseSelect(props) {
   //console.log(props)
 
   /*
-  type:字典id，
+  type:数据字典id，
   item:props参数集合
   name:选择框对应参数名字
   */

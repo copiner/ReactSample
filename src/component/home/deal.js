@@ -68,7 +68,7 @@ function Deal() {
               update={ updateField } />
           </span>
         </p>
-        <p><i></i><span className={stl.dealRemark}> {"绑定手机号可享受手机刷码入寺院"}</span></p>
+        <p><i></i><span className={stl.dealRemark}> {"绑定手机号可享受手机刷码入球场"}</span></p>
         <p>
           <i>卡类型：</i>
           <BaseSelect type={ CNF.DICT.cardtype } item={ info } setItem={setInfo} name={"cardtype"} />

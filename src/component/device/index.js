@@ -3,6 +3,7 @@ import { Button, Divider, message } from 'antd';
 
 import ComInput from '../common/bipt'
 import BaseSelect from '../common/bslt'
+import DeviceList from './list'
 import stl from './index.css'
 
 import CNF from '../../config'
@@ -42,6 +43,10 @@ function Device(props) {
       {/*强制命名统一*/}
       <BaseSelect type={ CNF.DICT.tname } item={ dee } setItem={setDee} name={"tname"} />
 
+      <label>名称：</label>
+      {/*强制命名统一*/}
+      <BaseSelect type={ CNF.DICT.tname } item={ dee } setItem={setDee} name={"tname"} />
+
       <label>设备ID：</label>
       {/*强制命名统一*/}
       <ComInput
@@ -55,7 +60,10 @@ function Device(props) {
       <Button type="primary" size={"default"} onClick={ printValues } >查询</Button>
       <Button onClick={resetField}>清空</Button>
 
-      <Divider />
+      <hr />
+      <div>
+        <DeviceList />
+      </div>
     </div>
   );
 }

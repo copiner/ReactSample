@@ -7,5 +7,5 @@
 
 export default class Selectors {
   static getPosts = state => state.posts;
-  static getUsers = state => state.users;
+  static getKind = state => state.kind;
 }
