@@ -1,4 +1,6 @@
 import React, { useState,useEffect,useCallback } from "react";
+import { Link } from 'react-router-dom';
+
 import { Modal, Button, Table, Avatar, Space } from "antd";
 import { useModalVisible } from '../common/modal';
 
@@ -11,6 +13,13 @@ const KindTable = (props) => {
   const [pageSize, setPageSize] = useState(10);
   const [pageNo, setPageNo] = useState(1);
   const [flag, setFlag] = useState(null);
+
+  //路由传参获取
+  console.log(props)
+  //1 props.location.query.id
+  console.log(props.location.query && props.location.query.id)
+  //2 props.location.state
+  console.log(props.location.state && props.location.state.id)
 
   useEffect(() => {
     props.kindAct.kindSt()
@@ -89,6 +98,8 @@ const KindTable = (props) => {
   return (
     <>
       <Button onClick={ ()=>{ popItem("1"); }}type="primary">创建</Button>
+      <Button type="primary"><Link to={{pathname:'/kind', query:{id:3}}}>传参query</Link></Button>
+      <Button type="primary"><Link to={{pathname:'/kind', state:{id:4}}}>传参state</Link></Button>
       <hr />
       <Table
         loading={loading}

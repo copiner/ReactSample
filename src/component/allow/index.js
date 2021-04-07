@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import { DatePicker, Button, Input, Divider,Modal, message  } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 
@@ -9,21 +11,23 @@ import ComInput from '../common/bipt'
 import CNF from '../../config'
 
 
-
 import { useModalVisible } from '../common/modal';
 
 import stl from './index.css'
 
 function Allowed(props) {
 
-  console.log(props)
   let initatom = { task: "",name: "", idno: "",phone: "", cdate:[] };
 
   const [dtl, setDtl] = useState(initatom);
 
+  //路由传参获取
+  console.log(props)
+  //1 props.match.params.id
+  console.log(props.match.params.id)
+
   const printValues = e => {
     e.preventDefault();
-    console.log(dtl)
     props.allowSt()
   };
 
@@ -119,6 +123,7 @@ function Allowed(props) {
           </p>
         <hr />
         <Button type="primary" onClick={openModal}>创建白名单</Button>
+        <Button type="primary" ><Link to={"/allowed/2"}>路由</Link></Button>
         <div>
           <List allow={props.allow} />
         </div>

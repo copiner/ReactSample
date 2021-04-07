@@ -16,7 +16,7 @@ class Index extends Component {
   render() {
     //console.log(this.props)
     let { status, correct } = this.props.login;
-    status = true;
+    status = true;//登录信息
     return (
       <>
         {

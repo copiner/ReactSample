@@ -25,7 +25,7 @@ export const routesList = [
       {
         id:'00',
         title:"常用业务",
-        path: '/sail',
+        path: '/sail/',
         extra: {
           ant: true
         },
@@ -34,7 +34,7 @@ export const routesList = [
       {
         id:'01',
         title:"白名单管理",
-        path: '/allowed',
+        path: '/allowed/:id',
         exact: true,
         component: loadable(() => import(/* webpackChunkName: "hoc" */"../container/allow"))
       },
