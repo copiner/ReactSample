@@ -8,10 +8,11 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 const CompressionPlugin = require('compression-webpack-plugin');
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 
-const env = require('./pro');
+const env = require('./test');
 
 module.exports = {
   mode: "production",
@@ -23,7 +24,7 @@ module.exports = {
     path: resolve(__dirname, '../dist'),
     filename: './js/[name].[contenthash].js',
     chunkFilename: './js/[name].[contenthash].js',
-    publicPath: "./"
+    publicPath: './'
   },
   module: {
         rules: [
@@ -36,22 +37,21 @@ module.exports = {
             },
             {
               test: /\.(png|jpg|gif)$/,
-              include: resolve(__dirname, '../src'),
-              type: 'asset/resource',
-              parser: {
-                 dataUrlCondition: {
-                   maxSize: 4 * 1024 // 4kb
-                 }
-               },
-              generator: {
-                 filename: 'static/[hash][ext][query]'
-              }
+              use: [
+                {
+                  loader: 'url-loader',
+                  options: {
+                    limit: 8*1024
+                  }
+                }
+              ]
             },
             {
                 test: /\.css$/,
                 include: resolve(__dirname, '../src'),
                 use: [
                   MiniCssExtractPlugin.loader,
+
                   {
                    loader: 'css-loader',
                    options: {
@@ -83,17 +83,17 @@ module.exports = {
             filename: "index.html",
             favicon: "./public/favicon.ico"
          }),
-         new CleanWebpackPlugin(),
-         new MiniCssExtractPlugin({
-            filename: './css/[name][contenthash].css',
-            chunkFilename: './css/[id][contenthash].css',
-            ignoreOrder: false
-          }),
-          new CompressionPlugin(), //nginx gzip_static模块启用
-          //new BundleAnalyzerPlugin()//打包调整更新优化
-          new MomentLocalesPlugin({
-            localesToKeep: ['es-us', 'zh-cn'],
-          }),
+        new CleanWebpackPlugin(),
+        new MiniCssExtractPlugin({
+          filename: './css/[name][contenthash].css',
+          chunkFilename: './css/[id][contenthash].css',
+          ignoreOrder: false
+        }),
+        new CompressionPlugin(), //nginx gzip_static模块启用
+          //new BundleAnalyzerPlugin(),//打包调整更新优化
+        new MomentLocalesPlugin({
+          localesToKeep: ['es-us', 'zh-cn'],
+        })
      ],
      optimization: {
        splitChunks: {

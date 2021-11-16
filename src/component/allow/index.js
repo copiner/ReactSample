@@ -73,7 +73,7 @@ function Allowed(props) {
 
   return (
       <div className={stl.allowed}>
-        <p>
+        <div>
           <label>任务名称:</label>
           <ComInput
             limit={ CNF.IPTLIT.namea }
@@ -110,8 +110,8 @@ function Allowed(props) {
             name={ "phone" }
             clear = { emptyField }
             update={ updateField } />
-          </p>
-          <p>
+          </div>
+          <div>
             <label>创建日期:</label>
             <DatePicker.RangePicker
               inputReadOnly
@@ -120,14 +120,13 @@ function Allowed(props) {
 
             <Button type="primary" size={"default"} onClick={ printValues } >查询</Button>
             <Button onClick={resetField}>清空</Button>
-          </p>
+          </div>
         <hr />
         <Button type="primary" onClick={openModal}>创建白名单</Button>
         <Button type="primary" ><Link to={"/allowed/2"}>路由</Link></Button>
         <div>
           <List allow={props.allow} />
         </div>
-
         {
           /*创建白名单*/
         }

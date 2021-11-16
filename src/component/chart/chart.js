@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import echarts from 'echarts/lib/echarts'
 
-import 'echarts/lib/component/tooltip';
-import 'echarts/lib/component/title';
-import 'echarts/lib/chart/bar'
+import * as echarts from 'echarts/core';
+import { GridComponent } from 'echarts/components';
+import { BarChart } from 'echarts/charts';
+import { CanvasRenderer } from 'echarts/renderers';
 
-// import 'echarts/lib/component/grid';
-// import 'echarts/lib/component/visualMap';
+echarts.use([GridComponent, BarChart, CanvasRenderer]);
 
-// import 'echarts/lib/chart/heatmap';
 const FancyButton = React.forwardRef((props, ref) => (
   <button ref={ref}>
     {props.children}
@@ -69,7 +67,7 @@ class Chart extends Component {
       */
       var myChart = echarts.init(this.chartContainer.current);
       const option = this.props.option;
-      myChart.setOption(option);
+      option && myChart.setOption(option);
     }
 }
 

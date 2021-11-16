@@ -14,6 +14,9 @@ moment.locale('zh-cn');
 
 import configureStore from './store';
 const store = configureStore();
+//打印store 查看下面方法
+// console.log(store)
+// console.log(Object.getPrototypeOf(store))
 
 import App from './container';
 

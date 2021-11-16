@@ -35,15 +35,9 @@ class Side extends React.Component {
                          {
                            item.routes.map((link,idx)=>{
 
-                               if(link.id == "01"){
-                                 return (
-                                   <Menu.Item key={link.id}><Link to={"/allowed/1"}>{link.title}</Link></Menu.Item>
-                                 )
-                               } else {
-                                 return (
-                                   <Menu.Item key={link.id}><Link to={link.path}>{link.title}</Link></Menu.Item>
-                                 )
-                               }
+                               return (
+                                 <Menu.Item key={link.id}><Link to={link.path}>{link.title}</Link></Menu.Item>
+                               )
 
 
                            })

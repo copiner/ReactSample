@@ -5,70 +5,63 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+//const ESLintPlugin = require('eslint-webpack-plugin');
+const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 
-const isDev = process.env.NODE_ENV === 'development'
+const env = require('./dev');
+
+const url = "http://192.168.23.213:8089/templegm";
 
 module.exports = {
   mode: "development",
-  devtool: 'eval-source-map',
+  devtool: 'cheap-module-source-map',
   entry: {
      app: ['./src/index.js']
   },
   output: {
-    path: resolve(__dirname, '../build'),
-    filename: '[name].bundle.js',
-    chunkFilename: '[name].bundle.js',
-    publicPath:'/'
+    path: resolve(__dirname, '../dist'),
+    filename: './js/[name].[contenthash].js',
+    chunkFilename: './js/[name].[contenthash].js',
+    publicPath: './'
   },
   module: {
         rules: [
             {
                 test: /(\.jsx|\.js)$/,
                 include: resolve(__dirname, '../src'),
-                use: ['cache-loader', 'babel-loader']
+                use: {
+                    loader: "babel-loader",
+                }
             },
             {
               test: /\.(png|jpg|gif)$/,
-              exclude: /node_modules/,
-              use: [
-                // {
-                //   loader: 'file-loader',
-                //   options: {
-                //     name: '[path][name].[ext]'
-                //   }
-                // },
-                {
-                  loader: 'url-loader',
-                  options: {
-                    limit: 8*1024
-                  }
-                }
-              ]
+              type: 'asset/resource',
+              parser: {
+                 dataUrlCondition: {
+                   maxSize: 4 * 1024 // 4kb
+                 }
+               },
+              generator: {
+                 filename: 'static/[hash][ext][query]'
+              }
             },
             {
                 test: /\.css$/,
                 include: resolve(__dirname, "../src"),
                 use: [
+                    { loader: "style-loader" },
                     {
-                      loader: MiniCssExtractPlugin.loader,
+                      loader: 'css-loader',
                       options: {
-                        hmr: isDev,
-                        reloadAll: true
-                      },
+                        modules: true
+                      }
                     },
-                    {
-                     loader: 'css-loader',
-                     options: {
-                         modules: true,
-                         importLoaders: 1
-                     }
-                   },
-                   { loader: 'postcss-loader' }
+                    { loader: 'postcss-loader' }
                 ]
             },
             {
                 test: /\.css$/,
-                include: /[\\/]node_modules[\\/](antd|cropperjs)[\\/]/,
+                include: /[\\/]node_modules[\\/](antd)[\\/]/,
                 use: [
                     "style-loader",
                     'css-loader'
@@ -78,38 +71,37 @@ module.exports = {
     },
     plugins: [
       new Webpack.DefinePlugin({
-         ENV: JSON.stringify(process.env.NODE_ENV)
+         'process.env': env
       }),
       new HtmlWebpackPlugin({
-        title: 'Hello World',
+        title: '管理系统',
         template:'./public/index.html',
         filename: "index.html",
         favicon: "./public/favicon.ico"
       }),
-      new CleanWebpackPlugin({
-        cleanOnceBeforeBuildPatterns: ['**/*', '!dll', '!dll/**'] //不删除dll目录
-      }),
-      new Webpack.HotModuleReplacementPlugin(),
+      new CleanWebpackPlugin(),
+      //If webpack or webpack-dev-server are launched with the --hot option, this plugin will be added automatically
+      // new Webpack.HotModuleReplacementPlugin(),
       new MiniCssExtractPlugin({
-        filename: '[name].css',
-        chunkFilename: '[id].css',
-        ignoreOrder: false
-      }),
-      new Webpack.DllReferencePlugin({
-        manifest:resolve(__dirname, '../build/dll', 'manifest.json')
-      }),
-      //new BundleAnalyzerPlugin()
+         filename: './css/[name][contenthash].css',
+         chunkFilename: './css/[id][contenthash].css',
+         ignoreOrder: false
+       }),
+      // new ESLintPlugin(),
+      //new BundleAnalyzerPlugin(),
+      new MomentLocalesPlugin({
+        localesToKeep: ['es-us', 'zh-cn'],
+      })
     ],
     optimization: {
       splitChunks: {
         chunks: 'async',
-        minSize: 30000,
-        maxSize: 0,
+        minSize: 20000,
+        minRemainingSize: 0,
         minChunks: 1,
-        maxAsyncRequests: 5,
-        maxInitialRequests: 3,
-        automaticNameDelimiter: '-',
-        name: true,
+        maxAsyncRequests: 30,
+        maxInitialRequests: 30,
+        enforceSizeThreshold: 50000,
         cacheGroups: {
           vendor: {
             //第三方依赖
@@ -123,15 +115,15 @@ module.exports = {
           antd: {
             name: "antd", // 单独将antd拆包
             priority: 5, // 权重需大于`vendor`
-            test: /[\\/]node_modules[\\/](antd)[\\/]/,
+            test: /[\\/]node_modules[\\/](antd|@ant-design|rc-menu|rc-trigger|rc-field-form|rc-tabs|rc-dropdown|rc-align|rc-motion|rc-notification|rc-animate|rc-util|rc-tooltip|rc-textarea)[\\/]/,
             chunks: 'initial',
             minSize: 100,
             minChunks: 1
           },
-          echarts: {
-            name: "echarts", //单独将echarts拆包
-            priority: 5, // 权重需大于`vendor`
-            test: /[\\/]node_modules[\\/](echarts)[\\/]/,
+          react: {
+            name: "react",
+            priority: 5,
+            test: /[\\/]node_modules[\\/](react|react-dom|react-redux|redux|react-router|react-router-dom|redux-saga|@redux-saga)[\\/]/,
             chunks: 'initial',
             minSize: 100,
             minChunks: 1
@@ -152,18 +144,20 @@ module.exports = {
         }
       }
     },
-   devServer: {
-      contentBase: resolve(__dirname, "../build"),
+    target:"web",
+    devServer: {
+      contentBase: resolve(__dirname, "../dist"),
+      publicPath: '/',
       historyApiFallback: true,
       host:"127.0.0.1",
       port: 9000,
-      inline: true,
       hot: true,
-      // proxy: {
-      //    '/api': {
-      //      target: 'http://192.168.23.213:8080',
-      //      pathRewrite: {'^/api' : ''}
-      //    }
-      //  }
+      proxy: {
+         '/api': {
+           target: url,
+           changeOrigin:true,
+           pathRewrite: {'^/api' : ''}
+         }
+       }
     }
 }

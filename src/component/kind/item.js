@@ -4,7 +4,6 @@ import { Button, Select, message } from 'antd';
 
 import ComInput from '../common/bipt'
 import BaseSelect from '../common/bslt'
-import CodeItem from '../common/code'
 import stl from './index.css'
 
 import CNF from '../../config'
@@ -118,11 +117,6 @@ function ItemForm(props) {
         update={ updateField }/>
         <Button type="primary" onClick={()=>{fetCodeId(codeid)}}>获取验证码</Button>
       </p>
-      <p>
-        <i></i>
-        <CodeItem codeid={codeid} setCodeid={setCodeid}  />
-      </p>
-      <p>操作员登录市民卡APP扫码获取二维码，以确认修改。验证码有效期为5分钟</p>
     </div>
   );
 }

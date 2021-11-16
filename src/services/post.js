@@ -5,23 +5,23 @@ import Mock from "mockjs";
 
 const fetchPosts = (params) => {
 
-  const goodsList = Mock.mock({
-    "list|100": [
+  const newsList = Mock.mock({
+    "data|50": [
       {
         id: "@id()",
         name: "@cname(10, 20)",
         stock: "@integer(10, 200)"
       }
     ],
-    total: 100
+    total: 50
   });
 
   return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(goodsList);
-    }, Mock.Random.integer(500, 1000));
+      setTimeout(() => {
+          resolve(newsList);
+      }, Mock.Random.integer(3000, 5000));
   });
-  
+
 };
 
 export default class PostServer {

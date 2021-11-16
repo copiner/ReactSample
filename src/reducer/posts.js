@@ -4,10 +4,10 @@ import {
 } from '../actions/posts';
 
 
-const postReducer = (state = {loading:false,data:[],text:'posts',}, action) => {
+const postReducer = (state={lists:[]}, action) => {
     switch(action.type) {
         case GET_POSTS_SUCCESS:
-            return {...state, fetched: true, data: action.posts}
+            return {...state, lists: action.posts}
         case GET_POSTS_FAIL:
             return {...state, error: action.error}
     }

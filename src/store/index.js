@@ -1,25 +1,15 @@
 import { createStore, applyMiddleware } from 'redux';
-import createSagaMiddleware from 'redux-saga';
 import logger from 'redux-logger';
-
-import appReducer from '../reducer';
-import rootSaga from '../sagas';
-
+import thunk from "redux-thunk";
+import rootReducer from '../reducer';
 
 export default function configureStore(initialState={}) {
 
-    const sagaMiddleware = createSagaMiddleware();
-    const middlewares = [ sagaMiddleware, logger ];
+    const middlewares = [ /*logger,*/thunk ];
 
     const middlewareEnhancer = applyMiddleware(...middlewares);
 
-    // const enhancers = [middlewareEnhancer, monitorReducersEnhancer]
-    // const composedEnhancers = compose(...enhancers)
-    // const store = createStore(rootReducer, preloadedState, composedEnhancers)
-
-    const store = createStore(appReducer,initialState,middlewareEnhancer);
-
-    sagaMiddleware.run(rootSaga);
+    const store = createStore(rootReducer,initialState,middlewareEnhancer);
 
     if (process.env.NODE_ENV !== 'production' && module.hot) {
        module.hot.accept('../reducer', () => store.replaceReducer(rootReducer))

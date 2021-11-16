@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { Input, Button, Tabs, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
-import QRCode from 'qrcode.react';
-import MD5 from 'crypto-js/md5'
 
 import ComInput from '../common/bipt'
 import CNF from '../../config'
@@ -22,7 +20,7 @@ function LoginForm(props) {
 
   const printValues = e => {
     e.preventDefault();
-    console.log(MD5("abc").toString());
+
     if(login.username && login.password){
       props.loginSt(login)
     } else {

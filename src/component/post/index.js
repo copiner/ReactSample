@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
+import { Table,Button } from 'antd';
+import { listPosts } from '../../actions/posts';
 
-import { Table } from 'antd';
-
-class PostList extends Component {
+class Post extends Component {
     //挂载阶段
     constructor(props) {
         super(props);
+        this.state = { text:'post' };
     }
 
-    static getDerivedStateFromProps(props, state) {
+    static getDerivedStateFromProps(nextProps, prevState) {
       console.log('getDerivedStateFromProps');
       return null;
     }
@@ -23,8 +24,13 @@ class PostList extends Component {
       return true
     }
 
+    listing = () =>{
+        this.props.listPosts({id:"007"})
+    }
+
     render() {
-        const postsList = this.props.postsList.data;
+        console.log(this.props)
+        const postsList = this.props.posts.lists.data;
         const columns = [
           {
               title: '编号',
@@ -43,6 +49,7 @@ class PostList extends Component {
 
         return (
             <div>
+                <Button type="primary" onClick={this.listing}>获取</Button>
                 <Table rowKey="id" dataSource={postsList} columns={columns} />
             </div>
         );
@@ -55,7 +62,7 @@ class PostList extends Component {
     }
 
     componentDidMount() { // 挂载后
-      this.props.postsAct();
+      this.props.listPosts({id:"007"});
       console.log('componentDidMount');
     }
 
@@ -74,4 +81,4 @@ class PostList extends Component {
 
 }
 
-export default PostList;
+export default Post;

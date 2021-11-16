@@ -11,23 +11,21 @@ module.exports = {
         useBuiltIns:"usage"
     }],
     ["@babel/preset-react",{
-         useBuiltIns:true
+         runtime: "automatic"
     }]
   ],
   plugins : [
-     ["@babel/plugin-proposal-class-properties", {
-       loose: true
-     }],
+     ["@babel/plugin-proposal-class-properties"],
      ["@babel/plugin-transform-react-jsx", {
-        useBuiltIns:true
+        runtime: "automatic"
       }],
      ["@babel/plugin-transform-runtime",{
        corejs:3
      }],
      ["@babel/plugin-syntax-dynamic-import"],
-     ["babel-plugin-import", {
+     ["import", {
        libraryName: "antd",
-       style: "css",   // or 'css'
+       style: "css"
      }]
   ]
 }
