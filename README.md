@@ -23,4 +23,4 @@ webpack
 
 antd design
 
-react react-router redux redux-saga
+react react-router redux

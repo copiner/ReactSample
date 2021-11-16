@@ -1,14 +1,24 @@
 import { connect } from 'react-redux';
-import { listPosts } from '../actions/posts';
+import { listPosts, postsuc } from '../actions/posts';
 import Post from '../component/post';
+import Postserver from "../services/post"
 
-const mapStateToProps  = (state) => ({
+const mapStateToProps  = (state,props) => ({
     posts: state.posts
 });
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, props) => {
     return {
-        listPosts: (posts) => dispatch(listPosts(posts))
+        listPosts: (posts) => dispatch(listPosts(posts)),//async 方法1 redux-thunk
+        listPost:(post)=>{
+            console.log(post)
+            //async 方法2
+            Postserver.getPosts(post).then((data)=>{
+                dispatch(postsuc(data))
+            }).catch(e=>{
+                console.log(e)
+            })
+        }
     }
 };
 

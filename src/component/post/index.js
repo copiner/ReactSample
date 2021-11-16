@@ -28,8 +28,12 @@ class Post extends Component {
         this.props.listPosts({id:"007"})
     }
 
+    listed = () =>{
+        this.props.listPost({id:"008"})
+    }
+
     render() {
-        console.log(this.props)
+
         const postsList = this.props.posts.lists.data;
         const columns = [
           {
@@ -50,6 +54,7 @@ class Post extends Component {
         return (
             <div>
                 <Button type="primary" onClick={this.listing}>获取</Button>
+                <Button type="primary" onClick={this.listed}>得到</Button>
                 <Table rowKey="id" dataSource={postsList} columns={columns} />
             </div>
         );
@@ -61,8 +66,7 @@ class Post extends Component {
       return null;
     }
 
-    componentDidMount() { // 挂载后
-      this.props.listPosts({id:"007"});
+    componentDidMount() { //挂载后
       console.log('componentDidMount');
     }
 
