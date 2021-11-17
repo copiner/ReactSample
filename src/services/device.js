@@ -4,28 +4,26 @@ import API from './api'
 import Mock from "mockjs";
 
 const fetchGoods = (params) => {
-  console.log(params)
+
   const goodsList = Mock.mock({
-    "list|10": [
+    "data|50": [
       {
         id: "@id()",
-        name: "@cname(10, 20)",
-        img: "@img(64x64)",
+        title: "@title(3)",
         price: "@float(0.01, 9999.99)",
         stock: "@integer(10, 200)"
       }
-    ],
-    total: 100
+    ]
   });
 
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(goodsList);
-    }, Mock.Random.integer(500, 1000));
+  }, Mock.Random.integer(3000, 5000));
   });
 };
 
-export default class DeviceServer {
+export default class Deviceserver {
 
   static fetchItem = fetchGoods
 
@@ -33,7 +31,7 @@ export default class DeviceServer {
 
   static update = ({ loanMinAmount, loanMaxAmount, userId }) => Http.post(API.KIND.UPDATE, { loanMinAmount, loanMaxAmount, userId })
 
-  static select = ({ id, userId }) => Http.post(API.KIND.SELECT, { id, userId })
+  static select = ({ id, userId }) => Http.post(API.DEVICE.SELECT, { id, userId })
 
-  static fetchBusinessList = ({ userId }) => Http.get(API.KIND.BUSINESS_LIST, { userId })
+  static fetchBusinessList = ({ userId }) => Http.get(API.DEVICE.BUSINESS_LIST, { userId })
 }

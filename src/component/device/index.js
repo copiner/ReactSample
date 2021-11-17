@@ -3,18 +3,19 @@ import { Button, Divider, message } from 'antd';
 
 import ComInput from '../common/bipt'
 import BaseSelect from '../common/bslt'
-import DeviceList from './list'
+import DeviceTable from './list'
 import stl from './index.css'
 
 import CNF from '../../config'
 
 function Device(props) {
+  console.log(props)
   let initatom = { tname: "",ttype: "",tid:"" };
 
   const [dee, setDee] = useState(initatom);
 
   const printValues = e => {
-    e.preventDefault();
+    props.listDve()
   };
 
   const updateField = e => {
@@ -35,7 +36,6 @@ function Device(props) {
     setDee(initatom);
   };
 
-  console.log(dee)
 
   return (
     <div className={stl.device}>
@@ -62,7 +62,7 @@ function Device(props) {
 
       <hr />
       <div>
-        <DeviceList />
+        <DeviceTable list={ props.device.list && props.device.list.data ? props.device.list.data : [] }/>
       </div>
     </div>
   );

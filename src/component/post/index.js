@@ -33,7 +33,7 @@ class Post extends Component {
     }
 
     render() {
-
+        console.log(this.props)
         const postsList = this.props.posts.lists.data;
         const columns = [
           {

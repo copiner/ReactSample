@@ -6,12 +6,12 @@ import Device from '../component/device';
 import * as deviceAct from '../actions/device'
 
 const mapStateToProps  = (state) => ({
-     deviceList: state.device
+     device: state.device
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  deviceAct: bindActionCreators(deviceAct, dispatch)
-});
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(deviceAct, dispatch)
+};
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Device);

@@ -10,8 +10,7 @@ import stl from './index.css'
 
 const DeviceTable = (props) => {
 
-  // let data = props.data.list, loading = props.loading;
-  // let total = props.data.total;
+  let data = props.list;
 
   const { visible, hideModal, openModal } = useModalVisible();
 
@@ -55,20 +54,13 @@ const DeviceTable = (props) => {
 
   const columns = [
     {
-      title: "id",
+      title: "编号",
       key: "id",
       dataIndex: "id"
     },{
       title: "商品名称",
-      key: "name",
-      dataIndex: "name",
-      render: (name, item) => (
-        <React.Fragment>
-          <Avatar src={item.img} />
-           &nbsp;
-          {name}
-        </React.Fragment>
-      )
+      key: "title",
+      dataIndex: "title"
     },
     {
       title: "商品价格",
@@ -98,13 +90,13 @@ const DeviceTable = (props) => {
       <Button onClick={ ()=>{ popItem("1"); }}type="primary">创建</Button>
       <Table
         loading={false}
-        dataSource={[]}
+        dataSource={data}
         columns={columns}
         bordered
         pagination={{
           pageSize,
           current: pageNo,
-          total:100,//total
+          total:data.length,//total
           onChange: (pageNo, pageSize) => {
             setPageNo(pageNo);
             setPageSize(pageSize);
@@ -118,7 +110,7 @@ const DeviceTable = (props) => {
         onOk={handleOk}
         onCancel={hideModal} >
         <div className={stl.deviceMol}>
-          <p>
+          <div>
             <i>设备id：</i>
             <ComInput
               limit={ CNF.IPTLIT.namec }
@@ -128,15 +120,15 @@ const DeviceTable = (props) => {
               name={ "tname" }
               clear = { emptyField }
               update={ updateField } />
-          </p>
-          <p>
+          </div>
+          <div>
             <i>球场名称：</i>
             <BaseSelect type={ CNF.DICT.tname } item={ dve } setItem={setDve} name={"tname"} />
-          </p>
-          <p>
+          </div>
+          <div>
             <i>设备类型：</i>
             <BaseSelect type={ CNF.DICT.tname } item={ dve } setItem={setDve} name={"tname"} />
-          </p>
+          </div>
         </div>
 
       </Modal>

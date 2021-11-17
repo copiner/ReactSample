@@ -58,7 +58,7 @@ export const routesList = [
     },{
       id:'11',
       title:"交易对账",
-      path: '/acc',
+      path: '/account',
       exact: true,
       component: loadable(() => import(/* webpackChunkName: "account" */"../component/account"))
     },{
