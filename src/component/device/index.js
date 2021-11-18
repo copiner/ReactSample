@@ -9,7 +9,7 @@ import stl from './index.css'
 import CNF from '../../config'
 
 function Device(props) {
-  console.log(props)
+
   let initatom = { tname: "",ttype: "",tid:"" };
 
   const [dee, setDee] = useState(initatom);

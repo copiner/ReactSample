@@ -39,7 +39,6 @@ const DeviceTable = (props) => {
 
   const popItem = (action, record) =>{
       // 1-新增，2-修改
-      console.log(record)
 
       let tmp = record || {}
       tmp.modifyFlag = action;
@@ -100,7 +99,6 @@ const DeviceTable = (props) => {
           onChange: (pageNo, pageSize) => {
             setPageNo(pageNo);
             setPageSize(pageSize);
-            //props.templeSt({pageNo, pageSize})
           }
         }}
       />
