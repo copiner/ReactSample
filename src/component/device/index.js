@@ -18,6 +18,11 @@ function Device(props) {
     props.listDve()
   };
 
+  const displayValues = () =>{
+      //reflect
+      props.listedDve(props.dispatch,"is not redux-thunk")
+  };
+
   const updateField = e => {
     setDee({
       ...dee,
@@ -58,6 +63,7 @@ function Device(props) {
         clear = { emptyField }
         update={ updateField } />
       <Button type="primary" size={"default"} onClick={ printValues } >查询</Button>
+      <Button type="primary" size={"default"} onClick={ displayValues } >获取</Button>
       <Button onClick={resetField}>清空</Button>
 
       <hr />

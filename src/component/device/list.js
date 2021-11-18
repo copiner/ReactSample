@@ -54,27 +54,27 @@ const DeviceTable = (props) => {
 
   const columns = [
     {
-      title: "编号",
-      key: "id",
-      dataIndex: "id"
+      key: "name",
+      title: "所属人",
+      dataIndex: "name"
     },{
-      title: "商品名称",
       key: "title",
+      title: "商品名称",
       dataIndex: "title"
     },
     {
-      title: "商品价格",
       key: "price",
+      title: "商品价格",
       dataIndex: "price",
       render: price => `¥ ${parseFloat(price).toFixed(2)}`
     },
     {
+      key: "id",
       title: "商品库存",
-      key: "stock",
       dataIndex: "stock"
     },{
+      key: 'id',
       title: '操作',
-      key: 'action',
       render: (text, record) => (
         <Space size="middle">
           <a onClick={() => popItem("2",record)}>编辑</a>
@@ -87,7 +87,7 @@ const DeviceTable = (props) => {
 
   return (
     <>
-      <Button onClick={ ()=>{ popItem("1"); }}type="primary">创建</Button>
+      <Button onClick={ ()=>{ popItem("1"); } } type="primary">创建</Button>
       <Table
         loading={false}
         dataSource={data}

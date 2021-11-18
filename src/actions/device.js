@@ -27,3 +27,13 @@ export const listDve = (dve) =>{
 		})
 	}
 }
+
+//reflect
+export const listedDve = (dispatch,dve) =>{
+	// dispatch(dvesrt())
+	Deviceserver.fetchItem(dve).then((data)=>{
+		dispatch(dvesuc(data))
+	}).catch(e=>{
+		dispatch(dvefil(e))
+	})
+}

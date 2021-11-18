@@ -8,9 +8,10 @@ const fetchGoods = (params) => {
   const goodsList = Mock.mock({
     "data|50": [
       {
-        id: "@id()",
+        key:"@id()",
+        name: "@name()",
         title: "@title(3)",
-        price: "@float(0.01, 9999.99)",
+        price: "@float(0.01, 999.99)",
         stock: "@integer(10, 200)"
       }
     ]
