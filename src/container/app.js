@@ -8,7 +8,6 @@ import Head from '../component/layout/head';
 import Main from '../component/layout/main';
 
 import { routesList } from '../routes/index';
-import { loginSt, logoutSt } from '../actions/login';
 
 
 class App extends Component {

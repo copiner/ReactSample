@@ -25,7 +25,7 @@ class Head extends React.Component {
   };
 
   linOut = e => {
-    this.props.logoutSt()
+    this.props.logoutSuc()
   };
 
   correctOut = e => {
@@ -34,7 +34,7 @@ class Head extends React.Component {
   };
 
   render() {
-
+      console.log(this.props)
     let { toggle, collapsed } = this.props;
 
     const menu = (

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Switch, Route, Redirect} from 'react-router-dom';
 import { Layout } from 'antd';
-import { loginSt, logoutSt, correctSt,correctMid } from '../actions/login';
+import { loginSuc, logoutSuc, correctSt,correctMid } from '../actions/login';
 
 import App from './app';
 import Login from '../component/login';
@@ -16,7 +16,7 @@ class Index extends Component {
   render() {
     //console.log(this.props)
     let { status, correct } = this.props.login;
-    status = true;//登录信息
+    //status = true;//登录信息
     return (
       <>
         {
@@ -33,8 +33,8 @@ const mapStateToProps  = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loginSt: (lay) => dispatch(loginSt(lay)),
-  logoutSt: (lay) => dispatch(logoutSt(lay)),
+  loginSuc: (lay) => dispatch(loginSuc(lay)),
+  logoutSuc: (lay) => dispatch(logoutSuc(lay)),
   correctSt: (lay) => dispatch(correctSt(lay)),
   correctMid: (lay) => dispatch(correctMid(lay))
 });

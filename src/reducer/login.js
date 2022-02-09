@@ -1,3 +1,5 @@
+import Session from '../util/session'
+
 import {
     LOGOUT_SUCCESS,
     LOGOUT_FAIL,
@@ -8,7 +10,18 @@ import {
     CORRECT_SUCCESS
 } from '../actions/login';
 
-const loginReducer = (state = {status:false,correct:false,data:{}}, action) => {
+let initstatus = {
+    status:false,
+    correct:false,
+    data:{}
+}
+
+let tipped = Session.getItem("tipped");
+if(tipped){
+    initstatus = { ...initstatus, status:true }
+}
+
+const loginReducer = (state = initstatus, action) => {
     switch(action.type) {
         case LOGIN_SUCCESS:
             return {...state, status:true, data: action.login}

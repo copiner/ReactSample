@@ -22,7 +22,7 @@ function LoginForm(props) {
     e.preventDefault();
 
     if(login.username && login.password){
-      props.loginSt(login)
+      props.loginSuc(login)
     } else {
       message.info('请输入用户名和密码！');
     }
@@ -80,7 +80,7 @@ function LoginForm(props) {
         </Tabs.TabPane>
         <Tabs.TabPane tab="扫码登陆" key="2">
           <div className={stl.loginCode}>
-            <QRCode size={256} value="react" />
+            code
           </div>
         </Tabs.TabPane>
       </Tabs>

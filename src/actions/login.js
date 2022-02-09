@@ -1,6 +1,6 @@
 // ================ action types ================
+import Session from '../util/session'
 
-export const LOGIN_START = 'LOGIN_START';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 
@@ -19,16 +19,12 @@ export function loginIn(login) {
 	return { type: LOGIN_SUCCESS, login:login }
 }
 
-export function loginSt(login) {
-	return { type: LOGIN_START, login:login }
+export function loginFail(login) {
+	return { type: LOGIN_FAIL, login:login }
 }
 
-export function logoutIn(login) {
+export function logoutSuc(login) {
 	return { type: LOGOUT_SUCCESS, login:login }
-}
-
-export function logoutSt(login) {
-	return { type: LOGOUT_START, login:login }
 }
 
 export function correctMid() {
@@ -41,4 +37,17 @@ export function correctIn(login) {
 
 export function correctSt(login) {
 	return { type: CORRECT_START, login:login }
+}
+
+export const loginSuc = (suc) =>{
+	return (dispatch, getState)=>{
+		//const tt = getState();
+		//http
+		if(true){
+			dispatch(loginIn(suc))
+			Session.setItem("tipped","tipped")
+		} else {
+			dispatch(loginFail(suc))
+		}
+	}
 }

@@ -40,3 +40,23 @@ if(module.hot) {
     render()
   })
 }
+
+//reflect
+
+let bl = "ob"
+let cl = "oc"
+let dl = "od"
+
+const al = (bl,cl,dl) =>{
+    return bl + cl + dl
+}
+
+function arrowhead(ppi="ppi"){
+
+    return (cl, dl) => al => bl => {
+        return al(bl,cl,dl)+ppi
+    }
+}
+
+let rr = arrowhead()("ki",dl)(al)(bl);
+console.log(rr)
